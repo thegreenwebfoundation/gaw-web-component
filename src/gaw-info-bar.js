@@ -14,7 +14,7 @@ import circle_organge from "./assets/circle_orange.svg";
  * @slot - This element has a slot
  * @csspart button - The button
  */
-export class MyElement extends LitElement {
+export class GawInfoBar extends LitElement {
   static get properties() {
     return {
       /**
@@ -326,4 +326,4 @@ export class MyElement extends LitElement {
   }
 }
 
-window.customElements.define("my-element", MyElement);
+window.customElements.define("gaw-info-bar", GawInfoBar);
