@@ -243,6 +243,7 @@ export class GawInfoBar extends LitElement {
         align-items: center;
         justify-content: space-between;
         padding: 0.5rem 1rem;
+        font-family: monospace;
         /* flex-wrap: wrap-reverse; */
       }
 
@@ -322,6 +323,12 @@ export class GawInfoBar extends LitElement {
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
+      }
+
+      button {
+        background: none;
+        border: none;
+        font-family: inherit;
       }
     `;
   }
