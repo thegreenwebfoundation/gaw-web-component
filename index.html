@@ -2,9 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Vite + Lit</title>
+        <title>Grid-aware Websites Info Bar</title>
         <link rel="stylesheet" href="./src/index.css" />
         <script type="module" src="/src/gaw-info-bar.js"></script>
         <!-- <script>
@@ -19,12 +18,83 @@
         </script> -->
     </head>
     <body>
+        <h1>Grid-aware Websites Info Bar</h1>
+        <p>
+            This component is designed to be included at the top of, in the
+            header of, or in the footer of a web page that is using the
+            Grid-aware Websites library.
+        </p>
+
+        <h2>Standard</h2>
+        <h3>Lat-lon location format</h3>
+        <p>
+            This is a basic use of the info bar. It includes information about
+            the grid intensity, location (lat-lon format), and data update time.
+        </p>
+        <details>
+            <summary>Code</summary>
+            <pre lang="html">
+                <code>
+                    <gaw-info-bar
+                        data-gaw-level="moderate"
+                        data-gaw-location="[25.05300,121.52590]"
+                        data-gaw-datetime="2025-06-02T07:00:00.000Z"
+                    >
+                    </gaw-info-bar>
+                </code>
+            </pre>
+        </details>
         <gaw-info-bar
             data-gaw-level="moderate"
             data-gaw-location="[25.05300,121.52590]"
             data-gaw-datetime="2025-06-02T07:00:00.000Z"
         >
-            <!-- <h1>Vite + Lit</h1> -->
+        </gaw-info-bar>
+        <hr />
+        <h3>Country code location format</h3>
+        <p>
+            This is a basic use of the info bar. It includes information about
+            the grid intensity, location (country code format), and data update
+            time.
+        </p>
+        <details>
+            <summary>Code</summary>
+            <pre lang="html">
+                <code>
+                    <gaw-info-bar
+                        data-gaw-level="moderate"
+                        data-gaw-location="[25.05300,121.52590]"
+                        data-gaw-datetime="2025-06-02T07:00:00.000Z"
+                    >
+                    </gaw-info-bar>
+                </code>
+            </pre>
+        </details>
+        <gaw-info-bar
+            data-gaw-level="moderate"
+            data-gaw-location="TW"
+            data-gaw-datetime="2025-06-02T07:00:00.000Z"
+        >
         </gaw-info-bar>
     </body>
+    <script>
+        /**
+         * Automatically escapes HTML in all code blocks on the page for demo purposes
+         */
+        function escapeAllCodeBlocks() {
+            const codeBlocks = document.querySelectorAll("code");
+
+            codeBlocks.forEach((block) => {
+                const rawContent = block.innerHTML;
+                const escapedContent = rawContent
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;");
+
+                block.innerHTML = escapedContent;
+            });
+        }
+
+        // Run this after the DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", escapeAllCodeBlocks);
+    </script>
 </html>
