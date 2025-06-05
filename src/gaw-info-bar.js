@@ -103,18 +103,20 @@ export class GawInfoBar extends LitElement {
     this.count++;
   }
 
-  _formatLatLon(location) {
-    // Parse the values to numbers
-    const lat = parseFloat(location.lat);
-    const lon = parseFloat(location.lon);
+  _formatLocation(location) {
+    if (location.trim().startsWith("[") && location.trim().endsWith("]")) {
+      location = JSON.parse(location);
+      console.log(location, typeof location[0]);
+      const lat = parseFloat(location[0]);
+      const lon = parseFloat(location[1]);
+      const latDirection = lat >= 0 ? "N" : "S";
+      const lonDirection = lon >= 0 ? "E" : "W";
+      const latValue = Math.abs(parseInt(lat));
+      const lonValue = Math.abs(parseInt(lon));
+      return `${latDirection}${latValue}° ${lonDirection}${lonValue}°`;
+    }
 
-    // Determine the directions and get integer values by truncating at decimal point
-    const latDirection = lat >= 0 ? "N" : "S";
-    const lonDirection = lon >= 0 ? "E" : "W";
-    const latValue = Math.abs(parseInt(lat));
-    const lonValue = Math.abs(parseInt(lon));
-
-    return `${latDirection}${latValue}° ${lonDirection}${lonValue}°`;
+    return location;
   }
 
   _formatDateTime(dateString) {
@@ -131,26 +133,24 @@ export class GawInfoBar extends LitElement {
   }
 
   _init() {
-    try {
-      if (gridAware.location && typeof gridAware.location === "string") {
-        this.location = gridAware.location;
-      } else if (
-        gridAware.location &&
-        gridAware.location.lat &&
-        gridAware.location.lon
-      ) {
-        this.location = this._formatLatLon(gridAware.location);
-      }
-    } catch (e) {}
+    const level = this.dataset.gawLevel;
+    const location = this.dataset.gawLocation;
+    const datetime = this.dataset.gawDatetime;
 
     try {
-      if (gridAware.level === "low") {
+      this.location = this._formatLocation(location);
+    } catch (e) {
+      console.log("Error formatting location:", e);
+    }
+
+    try {
+      if (level === "low") {
         this.circle = html`<img class="icon" src=${circle_green} />`;
         this.gridLevelText = "Local energy grid cleaner than average.";
-      } else if (gridAware.level === "moderate") {
+      } else if (level === "moderate") {
         this.circle = html`<img class="icon" src=${circle_organge} />`;
         this.gridLevelText = "Local energy grid intensity around average.";
-      } else if (gridAware.level === "high") {
+      } else if (level === "high") {
         this.circle = html`<img class="icon" src=${circle_red} />`;
         this.gridLevelText = "Local energy grid dirtier than average.";
       }
@@ -160,8 +160,8 @@ export class GawInfoBar extends LitElement {
     }
 
     try {
-      if (gridAware.datetime) {
-        this.updatedAt = `Updated at ${this._formatDateTime(gridAware.datetime)}`;
+      if (datetime) {
+        this.updatedAt = `Updated at ${this._formatDateTime(datetime)}`;
       }
     } catch (e) {}
   }
@@ -243,6 +243,7 @@ export class GawInfoBar extends LitElement {
         align-items: center;
         justify-content: space-between;
         padding: 0.5rem 1rem;
+        /* flex-wrap: wrap-reverse; */
       }
 
       :host > div {

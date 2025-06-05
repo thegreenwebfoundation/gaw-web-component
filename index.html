@@ -7,7 +7,7 @@
         <title>Vite + Lit</title>
         <link rel="stylesheet" href="./src/index.css" />
         <script type="module" src="/src/gaw-info-bar.js"></script>
-        <script>
+        <!-- <script>
             const gridAware = {
                 level: "moderate",
                 location: {
@@ -16,10 +16,14 @@
                 },
                 datetime: "2025-06-02T07:00:00.000Z",
             };
-        </script>
+        </script> -->
     </head>
     <body>
-        <gaw-info-bar>
+        <gaw-info-bar
+            data-gaw-level="moderate"
+            data-gaw-location="[25.05300,121.52590]"
+            data-gaw-datetime="2025-06-02T07:00:00.000Z"
+        >
             <!-- <h1>Vite + Lit</h1> -->
         </gaw-info-bar>
     </body>
