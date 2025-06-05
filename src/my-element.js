@@ -34,8 +34,11 @@ export class MyElement extends LitElement {
     super();
     this.docsHint = "Click on the Vite and Lit logos to learn more";
     this.count = 0;
+    this.location = "";
     this.circle = null;
-    this.addEventListener("load", this._level());
+    this.gridLevelText = "";
+    this.updatedAt = "";
+    this.addEventListener("load", this._init());
   }
 
   render() {
@@ -61,15 +64,13 @@ export class MyElement extends LitElement {
           <div class="divider">
             <img src=${marker} class="icon" />
           </div>
-          <p>Location</p>
+          <p>${this.location}</p>
         </div>
         <div class="holder">
           <div class="divider">${this.circle}</div>
           <div class="split-content">
-            <p id="gaw-info-bar-intensity-content-status">
-              Grid status is based on average
-            </p>
-            <p id="gaw-info-bar-intensity-content-date">Updated at:</p>
+            <p>${this.gridLevelText}</p>
+            <p>${this.updatedAt}</p>
           </div>
         </div>
       </div>
@@ -78,7 +79,11 @@ export class MyElement extends LitElement {
           <div class="divider">
             <img class="icon" src=${info} />
             <p>Grid-aware design</p>
-            <input type="checkbox" id="gaw-info-bar-settings-auto-checkbox" />
+            <input
+              type="checkbox"
+              checked
+              id="gaw-info-bar-settings-auto-checkbox"
+            />
           </div>
           <div class="spaced">
             <button id="gaw-info-bar-settings-manual-low" disabled>Low</button>
@@ -98,19 +103,67 @@ export class MyElement extends LitElement {
     this.count++;
   }
 
-  _level() {
+  _formatLatLon(location) {
+    // Parse the values to numbers
+    const lat = parseFloat(location.lat);
+    const lon = parseFloat(location.lon);
+
+    // Determine the directions and get integer values by truncating at decimal point
+    const latDirection = lat >= 0 ? "N" : "S";
+    const lonDirection = lon >= 0 ? "E" : "W";
+    const latValue = Math.abs(parseInt(lat));
+    const lonValue = Math.abs(parseInt(lon));
+
+    return `${latDirection}${latValue}° ${lonDirection}${lonValue}°`;
+  }
+
+  _formatDateTime(dateString) {
+    const date = new Date(dateString);
+    const formatter = new Intl.DateTimeFormat("en-GB", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+    return formatter.format(date);
+  }
+
+  _init() {
     try {
-      if (gridIntensity === "low") {
+      if (gridAware.location && typeof gridAware.location === "string") {
+        this.location = gridAware.location;
+      } else if (
+        gridAware.location &&
+        gridAware.location.lat &&
+        gridAware.location.lon
+      ) {
+        this.location = this._formatLatLon(gridAware.location);
+      }
+    } catch (e) {}
+
+    try {
+      if (gridAware.level === "low") {
         this.circle = html`<img class="icon" src=${circle_green} />`;
-      } else if (gridIntensity === "moderate") {
+        this.gridLevelText = "Local energy grid cleaner than average.";
+      } else if (gridAware.level === "moderate") {
         this.circle = html`<img class="icon" src=${circle_organge} />`;
-      } else if (gridIntensity === "high") {
+        this.gridLevelText = "Local energy grid intensity around average.";
+      } else if (gridAware.level === "high") {
         this.circle = html`<img class="icon" src=${circle_red} />`;
+        this.gridLevelText = "Local energy grid dirtier than average.";
       }
     } catch (e) {
       console.log(e);
       this.circle = html`<img class="icon" src=${circle_gray} />`;
     }
+
+    try {
+      if (gridAware.datetime) {
+        this.updatedAt = `Updated at ${this._formatDateTime(gridAware.datetime)}`;
+      }
+    } catch (e) {}
   }
 
   static get styles() {
