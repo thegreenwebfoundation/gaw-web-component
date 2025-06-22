@@ -7,10 +7,6 @@ import { LitElement, css, html } from "lit";
 import { zones } from "./helpers/zones";
 import marker from "./assets/marker.svg";
 import info from "./assets/info.svg";
-import circle_gray from "./assets/circle_gray.svg";
-import circle_green from "./assets/circle_green.svg";
-import circle_red from "./assets/circle_red.svg";
-import circle_organge from "./assets/circle_orange.svg";
 
 export class GawInfoBar extends LitElement {
   static get properties() {
@@ -25,7 +21,7 @@ export class GawInfoBar extends LitElement {
     super();
     this.location = "";
     this.circle = null;
-    this.gridLevelText = "";
+    this.circle = "#B0AA9C";
     this.autoMode = true;
     this.addEventListener("load", this._init());
   }
@@ -40,35 +36,48 @@ export class GawInfoBar extends LitElement {
           <p>${this.location}</p>
         </div>
         <div class="holder">
-          <div class="divider">${this.circle}</div>
-          <div class="split-content">
-            <p>${this.gridLevelText}</p>
-            <img class="icon" src=${info} />
+          <div class="divider">
+            <svg
+              class="icon"
+              viewBox="0 0 100 100"
+              width="100%"
+              height="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="50" cy="50" r="40" fill="${this.circleFill}" />
+            </svg>
+          </div>
+            <div class="split-content">
+              <p>${this.gridLevelText}</p>
+              <img class="icon" src=${info} />
+            </div>
           </div>
         </div>
-      </div>
-      <div>
-        <div class="holder">
-          <div class="divider" id="gaw-info-bar-auto">
-            <p>Grid-aware design</p>
-            <label>
-              <input
-                type="checkbox"
-                ?checked="${this.autoMode}"
-                id="gaw-info-bar-settings-auto-toggle"
-                @change="${this._handleAutoToggleChange}"
-              />
-              Auto
-            </label>
-          </div>
-          <div id="gaw-info-bar-manual" class="spaced">
-            <button id="gaw-info-bar-settings-manual-low" disabled>Low</button>
-            <button id="gaw-info-bar-settings-manual-moderate" disabled>
-              Moderate
-            </button>
-            <button id="gaw-info-bar-settings-manual-high" disabled>
-              High
-            </button>
+        <div>
+          <div class="holder">
+            <div class="divider" id="gaw-info-bar-auto">
+              <p>Grid-aware design</p>
+              <label>
+                <input
+                  type="checkbox"
+                  ?checked="${this.autoMode}"
+                  id="gaw-info-bar-settings-auto-toggle"
+                  @change="${this._handleAutoToggleChange}"
+                />
+                Auto
+              </label>
+            </div>
+            <div id="gaw-info-bar-manual" class="spaced">
+              <button id="gaw-info-bar-settings-manual-low" disabled>
+                Low
+              </button>
+              <button id="gaw-info-bar-settings-manual-moderate" disabled>
+                Moderate
+              </button>
+              <button id="gaw-info-bar-settings-manual-high" disabled>
+                High
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -130,13 +139,13 @@ export class GawInfoBar extends LitElement {
 
     try {
       if (level === "low") {
-        this.circle = html`<img class="icon" src=${circle_green} />`;
+        this.circleFill = "#86CA7A";
         this.gridLevelText = "Your local grid: Cleaner than average.";
       } else if (level === "moderate") {
-        this.circle = html`<img class="icon" src=${circle_organge} />`;
+        this.circleFill = "#ECA75D";
         this.gridLevelText = "Your local grid: Around average emissions.";
       } else if (level === "high") {
-        this.circle = html`<img class="icon" src=${circle_red} />`;
+        this.circleFill = "#E4A08A";
         this.gridLevelText = "Your local grid: Dirtier than average.";
       }
     } catch (e) {
@@ -154,6 +163,7 @@ export class GawInfoBar extends LitElement {
         padding: 0.5rem 1rem;
         font-family: monospace;
         max-width: 1920px;
+        text-transform: uppercase;
         /* flex-wrap: wrap-reverse; */
       }
 
