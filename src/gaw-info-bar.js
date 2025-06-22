@@ -43,13 +43,13 @@ export class GawInfoBar extends LitElement {
           <div class="divider">${this.circle}</div>
           <div class="split-content">
             <p>${this.gridLevelText}</p>
+            <img class="icon" src=${info} />
           </div>
         </div>
       </div>
       <div>
         <div class="holder">
           <div class="divider" id="gaw-info-bar-auto">
-            <img class="icon" src=${info} />
             <p>Grid-aware design</p>
             <label>
               <input
