@@ -1,6 +1,9 @@
+// TODO:
+// - Remove the lat-lon
+// - Replace with the zone name (zoneName) from API (include a lookup via EMaps Zone endpoint)
+// - Remove the updated date
+
 import { LitElement, css, html } from "lit";
-import litLogo from "./assets/lit.svg";
-import viteLogo from "/vite.svg";
 import marker from "./assets/marker.svg";
 import info from "./assets/info.svg";
 import circle_gray from "./assets/circle_gray.svg";
@@ -8,36 +11,23 @@ import circle_green from "./assets/circle_green.svg";
 import circle_red from "./assets/circle_red.svg";
 import circle_organge from "./assets/circle_orange.svg";
 
-/**
- * An example element.
- *
- * @slot - This element has a slot
- * @csspart button - The button
- */
 export class GawInfoBar extends LitElement {
   static get properties() {
     return {
-      /**
-       * Copy for the read the docs hint.
-       */
-      docsHint: { type: String },
-
-      /**
-       * The number of times the button has been clicked.
-       */
-      count: { type: Number },
-      circle: { type: HTMLElement },
+      location: { type: String },
+      gridLevelText: { type: String },
+      updatedAt: { type: String },
+      autoMode: { type: Boolean }, // Add this property to track auto mode state
     };
   }
 
   constructor() {
     super();
-    this.docsHint = "Click on the Vite and Lit logos to learn more";
-    this.count = 0;
     this.location = "";
     this.circle = null;
     this.gridLevelText = "";
     this.updatedAt = "";
+    this.autoMode = true;
     this.addEventListener("load", this._init());
   }
 
@@ -63,11 +53,15 @@ export class GawInfoBar extends LitElement {
           <div class="divider" id="gaw-info-bar-auto">
             <img class="icon" src=${info} />
             <p>Grid-aware design</p>
-            <input
-              type="checkbox"
-              checked
-              id="gaw-info-bar-settings-auto-checkbox"
-            />
+            <label>
+              <input
+                type="checkbox"
+                ?checked="${this.autoMode}"
+                id="gaw-info-bar-settings-auto-toggle"
+                @change="${this._handleAutoToggleChange}"
+              />
+              Auto
+            </label>
           </div>
           <div id="gaw-info-bar-manual" class="spaced">
             <button id="gaw-info-bar-settings-manual-low" disabled>Low</button>
@@ -81,10 +75,6 @@ export class GawInfoBar extends LitElement {
         </div>
       </div>
     `;
-  }
-
-  _onClick() {
-    this.count++;
   }
 
   _formatLocation(location) {
@@ -387,6 +377,32 @@ export class GawInfoBar extends LitElement {
     return formatter.format(date);
   }
 
+  /**
+   * Handles changes to the auto toggle checkbox
+   * @param {Event} event - The change event
+   * @private
+   */
+  _handleAutoToggleChange(event) {
+    this.autoMode = event.target.checked;
+
+    // Update UI based on auto mode state
+    const manualButtons = this.shadowRoot.querySelectorAll(
+      "#gaw-info-bar-manual button",
+    );
+    manualButtons.forEach((button) => {
+      button.disabled = this.autoMode;
+    });
+
+    // Dispatch a custom event to notify consumers of the change
+    this.dispatchEvent(
+      new CustomEvent("auto-mode-changed", {
+        detail: { autoMode: this.autoMode },
+        bubbles: true,
+        composed: true,
+      }),
+    );
+  }
+
   _init() {
     const level = this.dataset.gawLevel;
     const location = this.dataset.gawLocation;
@@ -514,6 +530,12 @@ export class GawInfoBar extends LitElement {
         background: none;
         border: none;
         font-family: inherit;
+      }
+
+      label:has(input) {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
       }
     `;
   }
