@@ -13,7 +13,7 @@ export class GawInfoBar extends LitElement {
     return {
       location: { type: String },
       gridLevelText: { type: String },
-      autoMode: { type: Boolean }, // Add this property to track auto mode state
+      autoMode: { type: Boolean },
     };
   }
 
@@ -23,6 +23,8 @@ export class GawInfoBar extends LitElement {
     this.circleFill = "#B0AA9C";
     this.autoMode = true;
     this.gridLevelText = "Your local grid: Data unavailable";
+    this.ignoreCookie = "gaw-ignore";
+    this.ignoreCookieMaxAge = "Session";
     this.addEventListener("load", this._init());
   }
 
@@ -109,10 +111,21 @@ export class GawInfoBar extends LitElement {
   _handleAutoToggleChange(event) {
     this.autoMode = event.target.checked;
 
+    if (this.autoMode) {
+      // Delete gaw-ignore cookie by setting expiration in the past
+      document.cookie = `${this.ignoreCookie}=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      window.location.reload();
+    } else {
+      // Set a cookie to ignore
+      document.cookie = `${this.ignoreCookie}=true; path=/; max-age=${this.ignoreCookieMaxAge}`;
+      window.location.reload();
+    }
+
     // Update UI based on auto mode state
     const manualButtons = this.shadowRoot.querySelectorAll(
       "#gaw-info-bar-manual button",
     );
+
     manualButtons.forEach((button) => {
       button.disabled = this.autoMode;
     });
@@ -127,9 +140,23 @@ export class GawInfoBar extends LitElement {
     );
   }
 
+  /**
+   * Checks if a cookie exists
+   * @param {string} name - The name of the cookie to check
+   * @returns {boolean} - True if the cookie exists, false otherwise
+   * @private
+   */
+  _hasCookie(name) {
+    return document.cookie
+      .split(";")
+      .some((cookie) => cookie.trim().startsWith(`${name}=`));
+  }
+
   _init() {
     const level = this.dataset.gawLevel;
     const location = this.dataset.gawLocation;
+    this.ignoreCookieMaxAge = this.dataset.ignoreCookieMaxAge;
+    this.ignoreCookie = this.dataset.ignoreCookie;
 
     try {
       this.location = this._formatLocation(location);
@@ -153,6 +180,11 @@ export class GawInfoBar extends LitElement {
     }
 
     if (this.location.toLowerCase() === "location unknown") {
+      this.autoMode = false;
+    }
+
+    // Check if the ignore cookie is set and update autoMode accordingly
+    if (this._hasCookie(this.ignoreCookie)) {
       this.autoMode = false;
     }
   }
