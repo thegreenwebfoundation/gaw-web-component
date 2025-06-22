@@ -233,14 +233,17 @@ export const zones = {
   "CL-SEA": {
     countryName: "Chile",
     zoneName: "Sistema Eléctrico de Aysén",
+    shortname: "Chile - Aysén",
   },
   "CL-SEM": {
     countryName: "Chile",
     zoneName: "Sistema Eléctrico de Magallanes",
+    shortname: "Chile - Magallanes",
   },
   "CL-SEN": {
     countryName: "Chile",
     zoneName: "Sistema Eléctrico Nacional",
+    shortname: "Chile",
   },
   CM: {
     zoneName: "Cameroon",
@@ -454,6 +457,7 @@ export const zones = {
   },
   GS: {
     zoneName: "South Georgia and the South Sandwich Islands",
+    shortName: "SGSSI",
   },
   GT: {
     zoneName: "Guatemala",
@@ -472,6 +476,7 @@ export const zones = {
   },
   HM: {
     zoneName: "Heard Island and McDonald Islands",
+    shortName: "HIMI",
   },
   HN: {
     zoneName: "Honduras",
@@ -1053,98 +1058,121 @@ export const zones = {
   "US-AK-SEAPA": {
     countryName: "USA",
     zoneName: "Southeast Alaska Power Agency",
+    shortName: "USA - Alaska",
   },
   "US-CAL-BANC": {
     countryName: "USA",
     displayName: "BANC",
     zoneName: "Balancing Authority of Northern California",
+    shortName: "USA - California",
   },
   "US-CAL-CISO": {
     countryName: "USA",
     displayName: "California ISO",
     zoneName: "CAISO",
+    shortName: "USA - California",
   },
   "US-CAL-IID": {
     countryName: "USA",
     zoneName: "Imperial Irrigation District",
+    shortName: "USA - California",
   },
   "US-CAL-LDWP": {
     countryName: "USA",
     zoneName: "Los Angeles Department of Water and Power",
+    shortName: "USA - Los Angeles",
   },
   "US-CAL-TIDC": {
     countryName: "USA",
     zoneName: "Turlock Irrigation District",
+    shortName: "USA - California",
   },
   "US-CAR-CPLE": {
     countryName: "USA",
     zoneName: "Duke Energy Progress East",
+    shortName: "USA - North Carolina",
   },
   "US-CAR-CPLW": {
     countryName: "USA",
     zoneName: "Duke Energy Progress West",
+    shortName: "USA - North Carolina",
   },
   "US-CAR-DUK": {
     countryName: "USA",
     zoneName: "Duke Energy Carolinas",
+    shortName: "USA - Carolinas",
   },
   "US-CAR-SC": {
     countryName: "USA",
     zoneName: "South Carolina Public Service Authority",
+    shortName: "USA - South Carolina",
   },
   "US-CAR-SCEG": {
     countryName: "USA",
     zoneName: "South Carolina Electric & Gas Company",
+    shortName: "USA - South Carolina",
   },
   "US-CAR-YAD": {
     countryName: "USA",
     displayName: "Alcoa Power Generating",
     zoneName: "Alcoa Power Generating, Inc. Yadkin Division",
+    shortName: "USA - North Carolina",
   },
   "US-CENT-SPA": {
     countryName: "USA",
     zoneName: "Southwestern Power Administration",
+    shortName: "USA - Central",
   },
   "US-CENT-SWPP": {
     countryName: "USA",
     displayName: "SPP",
     zoneName: "Southwest Power Pool",
+    shortName: "USA - Central",
   },
   "US-FLA-FMPP": {
     countryName: "USA",
     zoneName: "Florida Municipal Power Pool",
+    shortName: "USA - Florida",
   },
   "US-FLA-FPC": {
     countryName: "USA",
     zoneName: "Duke Energy Florida",
+    shortName: "USA - Florida",
   },
   "US-FLA-FPL": {
     countryName: "USA",
     zoneName: "Florida Power and Light Company",
+    shortName: "USA - Florida",
   },
   "US-FLA-GVL": {
     countryName: "USA",
     zoneName: "Gainesville Regional Utilities",
+    shortName: "USA - Gainesville",
   },
   "US-FLA-HST": {
     countryName: "USA",
     zoneName: "City of Homestead",
+    shortName: "USA - Homestead",
   },
   "US-FLA-JEA": {
     countryName: "USA",
     zoneName: "Jacksonville Electric Authority",
+    shortName: "USA - Jacksonville",
   },
   "US-FLA-SEC": {
     countryName: "USA",
     zoneName: "Seminole Electric Cooperative",
+    shortName: "USA - Seminole",
   },
   "US-FLA-TAL": {
     countryName: "USA",
     zoneName: "City of Tallahassee",
+    shortName: "USA - Tallahassee",
   },
   "US-FLA-TEC": {
     countryName: "USA",
     zoneName: "Tampa Electric Company",
+    shortName: "USA - Tampa",
   },
   "US-HI": {
     countryName: "USA",
@@ -1154,146 +1182,180 @@ export const zones = {
     countryName: "USA",
     displayName: "PJM",
     zoneName: "PJM Interconnection",
+    shortName: "USA - Mid Atlantic",
   },
   "US-MIDW-AECI": {
     countryName: "USA",
     zoneName: "Associated Electric Cooperative",
+    shortName: "USA - Midwest",
   },
   "US-MIDW-LGEE": {
     countryName: "USA",
     displayName: "Louisville Gas And Electric Company",
     zoneName: "Louisville Gas and Electric Company and Kentucky Utilities",
+    shortName: "USA - Louisville",
   },
   "US-MIDW-MISO": {
     countryName: "USA",
     displayName: "MISO",
     zoneName: "Midcontinent ISO",
+    shortName: "USA - Midcontinent",
   },
   "US-NE-ISNE": {
     countryName: "USA",
     zoneName: "ISO New England",
+    shortName: "USA - New England",
   },
   "US-NW-AVA": {
     countryName: "USA",
     zoneName: "Avista Corporation",
+    shortName: "USA - Avista",
   },
   "US-NW-BPAT": {
     countryName: "USA",
     zoneName: "Bonneville Power Administration",
+    shortName: "USA - Bonneville",
   },
   "US-NW-CHPD": {
     countryName: "USA",
     zoneName: "Chelan County",
+    shortName: "USA - Chelan County",
   },
   "US-NW-DOPD": {
     countryName: "USA",
     zoneName: "Douglas County",
+    shortName: "USA - Douglas County",
   },
   "US-NW-GCPD": {
     countryName: "USA",
     zoneName: "Grant County",
+    shortName: "USA - Grant County",
   },
   "US-NW-GRID": {
     countryName: "USA",
     zoneName: "Gridforce Energy Management",
+    shortName: "USA - Northwest",
   },
   "US-NW-IPCO": {
     countryName: "USA",
     zoneName: "Idaho Power Company",
+    shortName: "USA - Idaho",
   },
   "US-NW-NEVP": {
     countryName: "USA",
     zoneName: "Nevada Power Company",
+    shortName: "USA - Nevada",
   },
   "US-NW-NWMT": {
     countryName: "USA",
     zoneName: "Northwestern Energy",
+    shortName: "USA - Northwest",
   },
   "US-NW-PACE": {
     countryName: "USA",
     zoneName: "Pacificorp East",
+    shortName: "USA - Northwest",
   },
   "US-NW-PACW": {
     countryName: "USA",
     zoneName: "Pacificorp West",
+    shortName: "USA - Northwest",
   },
   "US-NW-PGE": {
     countryName: "USA",
     zoneName: "Portland General Electric Company",
+    shortName: "USA - Portland",
   },
   "US-NW-PSCO": {
     countryName: "USA",
     displayName: "PSCo",
     zoneName: "Public Service Company of Colorado",
+    shortName: "USA - Colorado",
   },
   "US-NW-PSEI": {
     countryName: "USA",
     zoneName: "Puget Sound Energy",
+    shortName: "USA - Puget Sound",
   },
   "US-NW-SCL": {
     countryName: "USA",
     zoneName: "Seattle City Light",
+    shortName: "USA - Seattle",
   },
   "US-NW-TPWR": {
     countryName: "USA",
     zoneName: "City of Tacoma",
+    shortName: "USA - Tacoma",
   },
   "US-NW-WACM": {
     countryName: "USA",
     displayName: "WAPA Rocky Mountains",
     zoneName: "Western Area Power Administration - Rocky Mountain Region",
+    shortName: "USA - Rocky Mountains",
   },
   "US-NW-WAUW": {
     countryName: "USA",
     displayName: "WAPA Upper Great Plains",
     zoneName: "Western Area Power Administration - Upper Great Plains West",
+    shortName: "USA - Upper Great Plains",
   },
   "US-NY-NYIS": {
     countryName: "USA",
     zoneName: "New York ISO",
+    shortName: "USA - New York",
   },
   "US-SE-SEPA": {
     countryName: "USA",
     zoneName: "Southeastern Power Administration",
+    shortName: "USA - Southeastern",
   },
   "US-SE-SOCO": {
     countryName: "USA",
     zoneName: "Southern Company Services",
+    shortName: "USA - Southeastern",
   },
   "US-SW-AZPS": {
     countryName: "USA",
     zoneName: "Arizona Public Service Company",
+    shortName: "USA - Arizona",
   },
   "US-SW-EPE": {
     countryName: "USA",
     zoneName: "El Paso Electric Company",
+    shortName: "USA - El Paso",
   },
   "US-SW-PNM": {
     countryName: "USA",
     zoneName: "Public Service Company of New Mexico",
+    shortName: "USA - New Mexico",
   },
   "US-SW-SRP": {
     countryName: "USA",
     zoneName: "Salt River Project",
+    shortName: "USA - Salt River",
   },
   "US-SW-TEPC": {
     countryName: "USA",
     zoneName: "Tucson Electric Power Company",
+    shortName: "USA - Tucson",
   },
   "US-SW-WALC": {
     countryName: "USA",
     displayName: "WAPA Desert Southwest",
     zoneName: "Western Area Power Administration - Desert Southwest Region",
+    shortname: "USA - Desert Southwest",
   },
   "US-TEN-TVA": {
     countryName: "USA",
     displayName: "TVA",
     zoneName: "Tennessee Valley Authority",
+    shortName: "USA - Tennessee",
   },
   "US-TEX-ERCO": {
     countryName: "USA",
     displayName: "ERCOT",
     zoneName: "Electric Reliability Council of Texas",
+    shortName: "USA - Texas",
   },
   UY: {
     zoneName: "Uruguay",
@@ -1303,6 +1365,7 @@ export const zones = {
   },
   VC: {
     zoneName: "Saint Vincent and the Grenadines",
+    shortName: "Saint Vincent",
   },
   VE: {
     zoneName: "Venezuela",
