@@ -6,16 +6,6 @@
         <title>Grid-aware Websites Info Bar</title>
         <link rel="stylesheet" href="./src/index.css" />
         <script type="module" src="/src/gaw-info-bar.js"></script>
-        <!-- <script>
-            const gridAware = {
-                level: "moderate",
-                location: {
-                    lat: "25.05300",
-                    lon: "121.52590",
-                },
-                datetime: "2025-06-02T07:00:00.000Z",
-            };
-        </script> -->
     </head>
     <body>
         <h1>Grid-aware Websites Info Bar</h1>
@@ -44,13 +34,10 @@
                 </code>
             </pre>
         </details>
-        <gaw-info-bar
-            data-gaw-level="moderate"
-            data-gaw-location="TW"
-            data-gaw-datetime="2025-06-02T07:00:00.000Z"
-        >
+        <gaw-info-bar data-gaw-level="moderate" data-gaw-location="TW">
         </gaw-info-bar>
         <hr />
+        <gaw-info-bar> </gaw-info-bar>
     </body>
     <script>
         /**

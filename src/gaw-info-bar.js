@@ -19,10 +19,10 @@ export class GawInfoBar extends LitElement {
 
   constructor() {
     super();
-    this.location = "";
-    this.circle = null;
-    this.circle = "#B0AA9C";
+    this.location = "Location unknown";
+    this.circleFill = "#B0AA9C";
     this.autoMode = true;
+    this.gridLevelText = "Your local grid: Data unavailable";
     this.addEventListener("load", this._init());
   }
 
@@ -68,13 +68,13 @@ export class GawInfoBar extends LitElement {
               </label>
             </div>
             <div id="gaw-info-bar-manual" class="spaced">
-              <button id="gaw-info-bar-settings-manual-low" disabled>
+              <button id="gaw-info-bar-settings-manual-low" ?disabled="${this.autoMode}">
                 Low
               </button>
-              <button id="gaw-info-bar-settings-manual-moderate" disabled>
+              <button id="gaw-info-bar-settings-manual-moderate" ?disabled="${this.autoMode}">
                 Moderate
               </button>
-              <button id="gaw-info-bar-settings-manual-high" disabled>
+              <button id="gaw-info-bar-settings-manual-high" ?disabled="${this.autoMode}">
                 High
               </button>
             </div>
@@ -150,7 +150,10 @@ export class GawInfoBar extends LitElement {
       }
     } catch (e) {
       console.log(e);
-      this.circle = html`<img class="icon" src=${circle_gray} />`;
+    }
+
+    if (this.location.toLowerCase() === "location unknown") {
+      this.autoMode = false;
     }
   }
 
@@ -181,7 +184,7 @@ export class GawInfoBar extends LitElement {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        border: 1px solid #ccc;
+        border: 1px solid #b8bcb5;
       }
 
       .holder > * {
@@ -206,7 +209,7 @@ export class GawInfoBar extends LitElement {
         position: absolute;
         height: calc(100% + 1rem);
         width: 1px;
-        background-color: #ccc;
+        background-color: #b8bcb5;
         top: -0.5rem;
         right: -0.25rem;
       }
