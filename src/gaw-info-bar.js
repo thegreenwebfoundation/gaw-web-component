@@ -150,9 +150,10 @@ export class GawInfoBar extends LitElement {
       :host {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-around;
         padding: 0.5rem 1rem;
         font-family: monospace;
+        max-width: 1920px;
         /* flex-wrap: wrap-reverse; */
       }
 
@@ -160,6 +161,10 @@ export class GawInfoBar extends LitElement {
         display: flex;
         align-items: center;
         gap: 0.5rem;
+      }
+
+      :host > .wrapper {
+        max-width: 600px;
       }
 
       .holder {
