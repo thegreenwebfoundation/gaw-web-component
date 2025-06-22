@@ -1,8 +1,3 @@
-// TODO:
-// - Remove the lat-lon
-// - Replace with the zone name (zoneName) from API (include a lookup via EMaps Zone endpoint)
-// - Remove the updated date
-
 import { LitElement, css, html } from "lit";
 import { zones } from "./helpers/zones";
 import marker from "./assets/marker.svg";
@@ -25,6 +20,7 @@ export class GawInfoBar extends LitElement {
     this.gridLevelText = "Your local grid: Data unavailable";
     this.ignoreCookie = "gaw-ignore";
     this.ignoreCookieMaxAge = "Session";
+    this.manualVersion = "low";
     this.addEventListener("load", this._init());
   }
 
@@ -113,12 +109,11 @@ export class GawInfoBar extends LitElement {
     this.autoMode = event.target.checked;
 
     if (this.autoMode) {
-      // Delete gaw-ignore cookie by setting expiration in the past
       document.cookie = `${this.ignoreCookie}=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
       window.location.reload();
     } else {
-      // Set a cookie to ignore
       document.cookie = `${this.ignoreCookie}=true; path=/; max-age=${this.ignoreCookieMaxAge}`;
+      document.cookie = `gaw-manual-view=low; path=/; max-age=${this.ignoreCookieMaxAge}`;
       window.location.reload();
     }
 

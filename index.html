@@ -15,12 +15,27 @@
             Grid-aware Websites library.
         </p>
 
-        <h2>Standard</h2>
-        <h3>Lat-lon location format</h3>
+        <h2>Grid intensity levels</h2>
         <p>
-            This is a basic use of the info bar. It includes information about
-            the grid intensity, location (lat-lon format), and data update time.
+            The below show the info bar in different states when the grid
+            intensity is known.
         </p>
+        <h3>Low</h3>
+        <details>
+            <summary>Code</summary>
+            <pre lang="html">
+                <code>
+                    <gaw-info-bar
+                        data-gaw-level="low"
+                        data-gaw-location="TW"
+                    >
+                    </gaw-info-bar>
+                </code>
+            </pre>
+        </details>
+        <gaw-info-bar data-gaw-level="low" data-gaw-location="TW">
+        </gaw-info-bar>
+        <h3>Moderate</h3>
         <details>
             <summary>Code</summary>
             <pre lang="html">
@@ -28,7 +43,6 @@
                     <gaw-info-bar
                         data-gaw-level="moderate"
                         data-gaw-location="TW"
-                        data-gaw-datetime="2025-06-02T07:00:00.000Z"
                     >
                     </gaw-info-bar>
                 </code>
@@ -36,6 +50,99 @@
         </details>
         <gaw-info-bar data-gaw-level="moderate" data-gaw-location="TW">
         </gaw-info-bar>
+        <h3>High</h3>
+        <details>
+            <summary>Code</summary>
+            <pre lang="html">
+                <code>
+                    <gaw-info-bar
+                        data-gaw-level="high"
+                        data-gaw-location="TW"
+                    >
+                    </gaw-info-bar>
+                </code>
+            </pre>
+        </details>
+        <gaw-info-bar data-gaw-level="high" data-gaw-location="TW">
+        </gaw-info-bar>
+        <h3>Unkown</h3>
+        <details>
+            <summary>Code</summary>
+            <pre lang="html">
+                <code>
+                    <gaw-info-bar
+                        data-gaw-location="TW"
+                    >
+                    </gaw-info-bar>
+                </code>
+            </pre>
+        </details>
+        <gaw-info-bar data-gaw-location="TW"> </gaw-info-bar>
+        <hr />
+        <h2>Different locations</h2>
+        <p>
+            For locations, you can pass in an Alpha-2 country code or any valid
+            Electricity Maps Zone ID. For some zones with longer names or
+            obscure names, we try to present a location string that represents
+            the most likely location for that grid.
+        </p>
+
+        <h3>Regular country code</h3>
+        <details>
+            <summary>Code</summary>
+            <pre lang="html">
+                <code>
+                    <gaw-info-bar
+                        data-gaw-level="high"
+                        data-gaw-location="TW"
+                    >
+                    </gaw-info-bar>
+                </code>
+            </pre>
+        </details>
+        <gaw-info-bar
+            data-gaw-level="high"
+            data-gaw-location="TW"
+        ></gaw-info-bar>
+
+        <h3>Region</h3>
+        <details>
+            <summary>Code</summary>
+            <pre lang="html">
+                    <code>
+                        <gaw-info-bar
+                            data-gaw-level="high"
+                            data-gaw-location="AU-NSW"
+                        >
+                        </gaw-info-bar>
+                    </code>
+                </pre>
+        </details>
+        <gaw-info-bar
+            data-gaw-level="high"
+            data-gaw-location="AU-NSW"
+        ></gaw-info-bar>
+        <h3>Complex region</h3>
+        <p>
+            This is a region where we've attempted of find the nearest sensible
+            location to show.
+        </p>
+        <details>
+            <summary>Code</summary>
+            <pre lang="html">
+                <code>
+                    <gaw-info-bar
+                        data-gaw-level="high"
+                        data-gaw-location="US-CENT-SPA"
+                    >
+                    </gaw-info-bar>
+                </code>
+            </pre>
+        </details>
+        <gaw-info-bar
+            data-gaw-level="high"
+            data-gaw-location="US-CENT-SPA"
+        ></gaw-info-bar>
         <hr />
         <gaw-info-bar> </gaw-info-bar>
     </body>
