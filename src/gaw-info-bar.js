@@ -131,13 +131,13 @@ export class GawInfoBar extends LitElement {
     try {
       if (level === "low") {
         this.circle = html`<img class="icon" src=${circle_green} />`;
-        this.gridLevelText = "Local energy grid cleaner than average.";
+        this.gridLevelText = "Your local grid: Cleaner than average.";
       } else if (level === "moderate") {
         this.circle = html`<img class="icon" src=${circle_organge} />`;
-        this.gridLevelText = "Local energy grid intensity around average.";
+        this.gridLevelText = "Your local grid: Around average emissions.";
       } else if (level === "high") {
         this.circle = html`<img class="icon" src=${circle_red} />`;
-        this.gridLevelText = "Local energy grid dirtier than average.";
+        this.gridLevelText = "Your local grid: Dirtier than average.";
       }
     } catch (e) {
       console.log(e);
