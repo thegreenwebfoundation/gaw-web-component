@@ -17,7 +17,6 @@ export class GawInfoBar extends LitElement {
     return {
       location: { type: String },
       gridLevelText: { type: String },
-      updatedAt: { type: String },
       autoMode: { type: Boolean }, // Add this property to track auto mode state
     };
   }
@@ -27,7 +26,6 @@ export class GawInfoBar extends LitElement {
     this.location = "";
     this.circle = null;
     this.gridLevelText = "";
-    this.updatedAt = "";
     this.autoMode = true;
     this.addEventListener("load", this._init());
   }
@@ -45,7 +43,6 @@ export class GawInfoBar extends LitElement {
           <div class="divider">${this.circle}</div>
           <div class="split-content">
             <p>${this.gridLevelText}</p>
-            <p>${this.updatedAt}</p>
           </div>
         </div>
       </div>
@@ -95,19 +92,6 @@ export class GawInfoBar extends LitElement {
     }
   }
 
-  _formatDateTime(dateString) {
-    const date = new Date(dateString);
-    const formatter = new Intl.DateTimeFormat("en-GB", {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    });
-    return formatter.format(date);
-  }
-
   /**
    * Handles changes to the auto toggle checkbox
    * @param {Event} event - The change event
@@ -137,7 +121,6 @@ export class GawInfoBar extends LitElement {
   _init() {
     const level = this.dataset.gawLevel;
     const location = this.dataset.gawLocation;
-    const datetime = this.dataset.gawDatetime;
 
     try {
       this.location = this._formatLocation(location);
@@ -160,12 +143,6 @@ export class GawInfoBar extends LitElement {
       console.log(e);
       this.circle = html`<img class="icon" src=${circle_gray} />`;
     }
-
-    try {
-      if (datetime) {
-        this.updatedAt = `Updated at ${this._formatDateTime(datetime)}`;
-      }
-    } catch (e) {}
   }
 
   static get styles() {
