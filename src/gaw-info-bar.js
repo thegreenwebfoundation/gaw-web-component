@@ -87,8 +87,9 @@ export class GawInfoBar extends LitElement {
   }
 
   _formatLocation(location) {
-    let locationString = location.toString();
+    if (!location) return "Location unknown";
     try {
+      let locationString = location.toString();
       const locationObject = zones[locationString];
       if (locationObject.shortName) {
         return locationObject.shortName;
@@ -99,7 +100,7 @@ export class GawInfoBar extends LitElement {
       }
     } catch (e) {
       console.error(e);
-      return locationString;
+      return "Location unknown";
     }
   }
 
@@ -154,12 +155,16 @@ export class GawInfoBar extends LitElement {
 
   _init() {
     const level = this.dataset.gawLevel;
-    const location = this.dataset.gawLocation;
+    this.location = this.dataset.gawLocation;
     this.ignoreCookieMaxAge = this.dataset.ignoreCookieMaxAge;
     this.ignoreCookie = this.dataset.ignoreCookie;
 
     try {
-      this.location = this._formatLocation(location);
+      const locationString = this._formatLocation(this.location);
+      this.location = locationString;
+      if (this.location?.toLowerCase() === "location unknown") {
+        this.autoMode = false;
+      }
     } catch (e) {
       console.log("Error formatting location:", e);
     }
@@ -177,10 +182,6 @@ export class GawInfoBar extends LitElement {
       }
     } catch (e) {
       console.log(e);
-    }
-
-    if (this.location.toLowerCase() === "location unknown") {
-      this.autoMode = false;
     }
 
     // Check if the ignore cookie is set and update autoMode accordingly
