@@ -170,7 +170,8 @@ export class GawInfoBar extends LitElement {
       }
 
       .holder > * {
-        padding: 0.25rem 0.5rem;
+        padding-block: 0.25rem;
+        padding-inline: 0.75rem;
       }
 
       .icon {
@@ -185,8 +186,7 @@ export class GawInfoBar extends LitElement {
         position-content: center;
       }
 
-      div.divider:after,
-      .split-content > *:not(:last-child):after {
+      div.divider:after {
         content: "";
         position: absolute;
         height: calc(100% + 1rem);
@@ -200,17 +200,14 @@ export class GawInfoBar extends LitElement {
         postion: relative;
         display: flex;
         flex-direction: row;
-        align-items: flex-start;
-        gap: 2rem;
+        align-items: center;
+        gap: 1rem;
+        /* justify-content: center; */
       }
 
       .split-content > * {
         padding-inline: 0.25rem;
         position: relative;
-      }
-
-      .split-content > *:not(:last-child):after {
-        right: -1rem;
       }
 
       .divider:has(input) {
