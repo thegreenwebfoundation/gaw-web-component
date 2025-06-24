@@ -66,13 +66,13 @@ export class GawInfoBar extends LitElement {
               </label>
             </div>
             <div id="gaw-info-bar-manual" class="spaced">
-              <button id="gaw-info-bar-settings-manual-low" ?disabled="${this.autoMode}">
+              <button id="gaw-info-bar-settings-manual-low" ?disabled="${this.autoMode}" @click=${this._handleManualModeChange} ?data-active=${this._checkIsActive("low")}>
                 Low
               </button>
-              <button id="gaw-info-bar-settings-manual-moderate" ?disabled="${this.autoMode}">
+              <button id="gaw-info-bar-settings-manual-moderate" ?disabled="${this.autoMode}" @click=${this._handleManualModeChange} ?data-active=${this._checkIsActive("moderate")}>
                 Moderate
               </button>
-              <button id="gaw-info-bar-settings-manual-high" ?disabled="${this.autoMode}">
+              <button id="gaw-info-bar-settings-manual-high" ?disabled="${this.autoMode}" @click=${this._handleManualModeChange} ?data-active=${this._checkIsActive("high")}>
                 High
               </button>
             </div>
@@ -110,30 +110,28 @@ export class GawInfoBar extends LitElement {
 
     if (this.autoMode) {
       document.cookie = `${this.ignoreCookie}=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      document.cookie = `gaw-manual-view=low; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
       window.location.reload();
     } else {
       document.cookie = `${this.ignoreCookie}=true; path=/; max-age=${this.ignoreCookieMaxAge}`;
       document.cookie = `gaw-manual-view=low; path=/; max-age=${this.ignoreCookieMaxAge}`;
       window.location.reload();
     }
+  }
 
-    // Update UI based on auto mode state
-    const manualButtons = this.shadowRoot.querySelectorAll(
-      "#gaw-info-bar-manual button",
-    );
+  /**
+   * Handles changes to the manual mode buttons
+   * @param {Event} event - The click event
+   * @private
+   */
+  _handleManualModeChange(event) {
+    const mode = event.target.id.split("-").pop();
+    document.cookie = `gaw-manual-view=${mode}; path=/; max-age=${this.ignoreCookieMaxAge}`;
+    window.location.reload();
+  }
 
-    manualButtons.forEach((button) => {
-      button.disabled = this.autoMode;
-    });
-
-    // Dispatch a custom event to notify consumers of the change
-    this.dispatchEvent(
-      new CustomEvent("auto-mode-changed", {
-        detail: { autoMode: this.autoMode },
-        bubbles: true,
-        composed: true,
-      }),
-    );
+  _checkIsActive(mode) {
+    return this._getCookie("gaw-manual-view") === mode;
   }
 
   /**
@@ -148,11 +146,25 @@ export class GawInfoBar extends LitElement {
       .some((cookie) => cookie.trim().startsWith(`${name}=`));
   }
 
+  _getCookie(name) {
+    const cookies = document.cookie.split("; ");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i];
+      const eqPos = cookie.indexOf("=");
+      const key = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      if (key === name) {
+        return decodeURIComponent(cookie.substring(eqPos + 1));
+      }
+    }
+    return null;
+  }
+
   _init() {
     const level = this.dataset.gawLevel;
     this.location = this.dataset.gawLocation;
-    this.ignoreCookieMaxAge = this.dataset.ignoreCookieMaxAge;
-    this.ignoreCookie = this.dataset.ignoreCookie;
+    this.ignoreCookieMaxAge =
+      this.dataset.ignoreCookieMaxAge || this.ignoreCookieMaxAge;
+    this.ignoreCookie = this.dataset.ignoreCookie || this.ignoreCookie;
 
     try {
       const locationString = this._formatLocation(this.location);
@@ -294,6 +306,30 @@ export class GawInfoBar extends LitElement {
         > div:has(+ #gaw-info-controls label > input:not([checked]))
         > .holder {
         display: none;
+      }
+
+      button:not(:disabled) {
+        background: none;
+        border: none;
+        font-family: inherit;
+        padding: 0.5rem 0.75rem;
+        cursor: pointer;
+      }
+
+      button#gaw-info-bar-settings-manual-low {
+        --activeButtonBackgroundColor: #86ca7a;
+      }
+
+      button#gaw-info-bar-settings-manual-moderate {
+        --activeButtonBackgroundColor: #eca75d;
+      }
+
+      button#gaw-info-bar-settings-manual-high {
+        --activeButtonBackgroundColor: #e4a08a;
+      }
+
+      button:not(:disabled)[data-active] {
+        background: var(--activeButtonBackgroundColor);
       }
     `;
   }

@@ -1,6 +1,5 @@
 {
   "name": "gaw-info-web-component",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
