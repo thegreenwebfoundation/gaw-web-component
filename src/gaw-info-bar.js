@@ -193,8 +193,8 @@ export class GawInfoBar extends LitElement {
   }
 
   _init() {
-    const level = this.dataset.gawLevel;
-    this.location = this.dataset.gawLocation;
+    const level = this.dataset.gawLevel || this.level;
+    this.location = this.dataset.gawLocation || this.location;
     this.ignoreCookieMaxAge =
       this.dataset.ignoreCookieMaxAge || this.ignoreCookieMaxAge;
     this.ignoreCookie = this.dataset.ignoreCookie || this.ignoreCookie;
@@ -202,9 +202,9 @@ export class GawInfoBar extends LitElement {
     try {
       const locationString = this._formatLocation(this.location);
       this.location = locationString;
-      if (this.location?.toLowerCase() === "location unknown") {
-        this.autoMode = false;
-      }
+      // if (this.location?.toLowerCase() === "location unknown") {
+      //   this.autoMode = false;
+      // }
     } catch (e) {
       console.log("Error formatting location:", e);
     }
@@ -241,6 +241,7 @@ export class GawInfoBar extends LitElement {
         max-width: 1920px;
         text-transform: uppercase;
         gap: 0.5rem;
+        color: inherit;
         /* flex-wrap: wrap-reverse; */
       }
 
