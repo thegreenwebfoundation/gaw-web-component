@@ -1,7 +1,5 @@
 import { LitElement, css, html } from "lit";
 import { zones } from "./helpers/zones";
-import marker from "./assets/marker.svg";
-import info from "./assets/info.svg";
 
 export class GawInfoBar extends LitElement {
   static get properties() {
@@ -29,7 +27,27 @@ export class GawInfoBar extends LitElement {
       <div>
         <div class="holder">
           <div class="divider">
-            <img src=${marker} class="icon" />
+              <svg
+                  class="icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="size-6"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                            />
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                            />
+                          </svg>
+
           </div>
           <p>${this.location}</p>
         </div>
@@ -47,7 +65,22 @@ export class GawInfoBar extends LitElement {
           </div>
             <div class="split-content">
               <p>${this.gridLevelText}</p>
-              <img class="icon" src=${info} />
+              <svg
+                  class="icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="size-6"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                            />
+                          </svg>
+
             </div>
           </div>
         </div>
