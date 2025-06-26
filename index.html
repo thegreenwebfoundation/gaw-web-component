@@ -5,25 +5,47 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Grid-aware Websites Info Bar</title>
         <link rel="stylesheet" href="./src/index.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+        />
         <script type="module" src="/src/gaw-info-bar.js"></script>
     </head>
     <body>
-        <h1>Grid-aware Websites Info Bar</h1>
-        <p>
-            This component is designed to be included at the top of, in the
-            header of, or in the footer of a web page that is using the
-            Grid-aware Websites library.
-        </p>
+        <main class="container-fluid">
+            <h1>Grid-aware Websites Info Bar</h1>
+            <p>
+                This component is designed to be used with the
+                <a
+                    href="https://github.com/thegreenwebfoundation/grid-aware-websites"
+                    >Grid-aware Websites library</a
+                >. When creating a grid-aware website, this component can be
+                used to:
+            </p>
+            <ul>
+                <li>
+                    Provide users with contextual information about their local
+                    energy grid.
+                </li>
+                <li>
+                    Allow the user to "opt-out" of automatically applying
+                    Grid-aware Website design to a page.
+                </li>
+                <li>
+                    Allow the user to change between different design modes that
+                    are setup for the site.
+                </li>
+            </ul>
 
-        <h2>Grid intensity levels</h2>
-        <p>
-            The below show the info bar in different states when the grid
-            intensity is known.
-        </p>
-        <h3>Low</h3>
-        <details>
-            <summary>Code</summary>
-            <pre lang="html">
+            <h2>Grid intensity levels</h2>
+            <p>
+                The below show the info bar in different states when the grid
+                intensity is known.
+            </p>
+            <h3>Low</h3>
+            <details>
+                <summary>Code</summary>
+                <pre lang="html">
                 <code>
                     <gaw-info-bar
                         data-gaw-level="low"
@@ -32,13 +54,13 @@
                     </gaw-info-bar>
                 </code>
             </pre>
-        </details>
-        <gaw-info-bar data-gaw-level="low" data-gaw-location="TW">
-        </gaw-info-bar>
-        <h3>Moderate</h3>
-        <details>
-            <summary>Code</summary>
-            <pre lang="html">
+            </details>
+            <gaw-info-bar data-gaw-level="low" data-gaw-location="TW">
+            </gaw-info-bar>
+            <h3>Moderate</h3>
+            <details>
+                <summary>Code</summary>
+                <pre lang="html">
                 <code>
                     <gaw-info-bar
                         data-gaw-level="moderate"
@@ -47,13 +69,13 @@
                     </gaw-info-bar>
                 </code>
             </pre>
-        </details>
-        <gaw-info-bar data-gaw-level="moderate" data-gaw-location="TW">
-        </gaw-info-bar>
-        <h3>High</h3>
-        <details>
-            <summary>Code</summary>
-            <pre lang="html">
+            </details>
+            <gaw-info-bar data-gaw-level="moderate" data-gaw-location="TW">
+            </gaw-info-bar>
+            <h3>High</h3>
+            <details>
+                <summary>Code</summary>
+                <pre lang="html">
                 <code>
                     <gaw-info-bar
                         data-gaw-level="high"
@@ -62,13 +84,17 @@
                     </gaw-info-bar>
                 </code>
             </pre>
-        </details>
-        <gaw-info-bar data-gaw-level="high" data-gaw-location="TW">
-        </gaw-info-bar>
-        <h3>Unkown</h3>
-        <details>
-            <summary>Code</summary>
-            <pre lang="html">
+            </details>
+            <gaw-info-bar data-gaw-level="high" data-gaw-location="TW">
+            </gaw-info-bar>
+            <h3>Unkown</h3>
+            <p>
+                When grid intensity data for a region is unknown, this state
+                should be presented.
+            </p>
+            <details>
+                <summary>Code</summary>
+                <pre lang="html">
                 <code>
                     <gaw-info-bar
                         data-gaw-location="TW"
@@ -76,21 +102,21 @@
                     </gaw-info-bar>
                 </code>
             </pre>
-        </details>
-        <gaw-info-bar data-gaw-location="TW"> </gaw-info-bar>
-        <hr />
-        <h2>Different locations</h2>
-        <p>
-            For locations, you can pass in an Alpha-2 country code or any valid
-            Electricity Maps Zone ID. For some zones with longer names or
-            obscure names, we try to present a location string that represents
-            the most likely location for that grid.
-        </p>
+            </details>
+            <gaw-info-bar data-gaw-location="TW"> </gaw-info-bar>
+            <hr />
+            <h2>Different locations</h2>
+            <p>
+                For locations, you can pass in an Alpha-2 country code or any
+                valid Electricity Maps Zone ID. For some zones with longer names
+                or obscure names, we try to present a location string that
+                represents the most likely location for that grid.
+            </p>
 
-        <h3>Regular country code</h3>
-        <details>
-            <summary>Code</summary>
-            <pre lang="html">
+            <h3>Regular country code</h3>
+            <details>
+                <summary>Code</summary>
+                <pre lang="html">
                 <code>
                     <gaw-info-bar
                         data-gaw-level="high"
@@ -99,16 +125,16 @@
                     </gaw-info-bar>
                 </code>
             </pre>
-        </details>
-        <gaw-info-bar
-            data-gaw-level="high"
-            data-gaw-location="TW"
-        ></gaw-info-bar>
+            </details>
+            <gaw-info-bar
+                data-gaw-level="high"
+                data-gaw-location="TW"
+            ></gaw-info-bar>
 
-        <h3>Region</h3>
-        <details>
-            <summary>Code</summary>
-            <pre lang="html">
+            <h3>Region</h3>
+            <details>
+                <summary>Code</summary>
+                <pre lang="html">
                     <code>
                         <gaw-info-bar
                             data-gaw-level="high"
@@ -117,19 +143,21 @@
                         </gaw-info-bar>
                     </code>
                 </pre>
-        </details>
-        <gaw-info-bar
-            data-gaw-level="high"
-            data-gaw-location="AU-NSW"
-        ></gaw-info-bar>
-        <h3>Complex region</h3>
-        <p>
-            This is a region where we've attempted of find the nearest sensible
-            location to show.
-        </p>
-        <details>
-            <summary>Code</summary>
-            <pre lang="html">
+            </details>
+            <gaw-info-bar
+                data-gaw-level="high"
+                data-gaw-location="AU-NSW"
+            ></gaw-info-bar>
+            <h3>Complex region</h3>
+            <p>
+                This is a region where we've attempted of find the nearest
+                sensible location to show. The below example is the display name
+                shown for the region "US-CENT-SPA" (Southwestern Power
+                Administration).
+            </p>
+            <details>
+                <summary>Code</summary>
+                <pre lang="html">
                 <code>
                     <gaw-info-bar
                         data-gaw-level="high"
@@ -138,28 +166,31 @@
                     </gaw-info-bar>
                 </code>
             </pre>
-        </details>
-        <gaw-info-bar
-            data-gaw-level="high"
-            data-gaw-location="US-CENT-SPA"
-        ></gaw-info-bar>
-        <hr />
-        <gaw-info-bar> </gaw-info-bar>
+            </details>
+            <gaw-info-bar
+                data-gaw-level="high"
+                data-gaw-location="US-CENT-SPA"
+            ></gaw-info-bar>
+        </main>
     </body>
-    <script>
+    <script type="module">
+        import { codeToHtml } from "https://esm.sh/shiki@3.0.0";
         /**
          * Automatically escapes HTML in all code blocks on the page for demo purposes
          */
-        function escapeAllCodeBlocks() {
+        async function escapeAllCodeBlocks() {
             const codeBlocks = document.querySelectorAll("code");
 
-            codeBlocks.forEach((block) => {
-                const rawContent = block.innerHTML;
-                const escapedContent = rawContent
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;");
+            codeBlocks.forEach(async (block) => {
+                // const rawContent = block.innerHTML;
+                // const escapedContent = rawContent
+                //     .replace(/</g, "&lt;")
+                //     .replace(/>/g, "&gt;");
 
-                block.innerHTML = escapedContent;
+                block.innerHTML = await codeToHtml(block.innerHTML, {
+                    lang: "js",
+                    theme: "rose-pine",
+                });
             });
         }
 
