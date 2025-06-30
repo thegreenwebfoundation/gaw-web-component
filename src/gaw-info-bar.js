@@ -368,5 +368,3 @@ export class GawInfoBar extends LitElement {
     `;
   }
 }
-
-window.customElements.define("gaw-info-bar", GawInfoBar);
