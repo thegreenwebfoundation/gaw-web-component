@@ -1,16 +1,44 @@
 {
-  "name": "gaw-info-web-component",
-  "version": "0.0.0",
+  "name": "@greenweb/gaw-info-bar",
+  "version": "0.1.0",
   "type": "module",
+  "description": "Web component that provides contextual information about local energy grids for grid-aware website designs",
+  "main": "dist/gaw-info-bar.cjs",
+  "module": "dist/gaw-info-bar.js",
+  "exports": {
+    ".": {
+      "import": "./dist/gaw-info-bar.js",
+      "require": "./dist/gaw-info-bar.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "lit": "^3.3.0"
   },
   "devDependencies": {
     "vite": "^6.3.5"
+  },
+  "keywords": [
+    "web-components",
+    "custom-elements",
+    "green-web",
+    "sustainability",
+    "grid-aware"
+  ],
+  "author": "The Green Web Foundation",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thegreenwebfoundation/gaw-info-web-component"
   }
 }
