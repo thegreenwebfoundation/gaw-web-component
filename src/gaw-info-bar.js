@@ -125,7 +125,7 @@ export class GawInfoBar extends LitElement {
       } else if (locationObject.zoneName) {
         return locationObject.zoneName;
       } else {
-        return locationObject.country;
+        return location.toString();
       }
     } catch (e) {
       console.error(e);
