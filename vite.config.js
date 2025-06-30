@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "src/index.js"),
       name: "GawInfoBar",
-      fileName: "gaw-info-bar.js",
+      fileName: "gaw-info-bar",
       formats: ["es"],
     },
     rollupOptions: {
