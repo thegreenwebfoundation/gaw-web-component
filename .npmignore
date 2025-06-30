@@ -1,0 +1,14 @@
+# Development files
+node_modules/
+src/
+public/
+index.html
+vite.config.js
+*.log
+.cache/
+.vscode/
+.idea/
+.DS_Store
+
+# Keep only the dist directory for npm package
+!dist/
