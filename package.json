@@ -7,8 +7,7 @@
   "module": "dist/gaw-info-bar.js",
   "exports": {
     ".": {
-      "import": "./dist/gaw-info-bar.js",
-      "require": "./dist/gaw-info-bar.cjs"
+      "import": "./dist/gaw-info-bar.js"
     }
   },
   "files": [

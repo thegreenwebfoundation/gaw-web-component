@@ -20,12 +20,23 @@ This web component is designed to work with the [Grid-aware Websites library](ht
 npm install @greenweb/gaw-info-bar
 ```
 
-### Direct Include
+### Import from a CDN
 
-Add the component to your project's HTML using a `script` tag. To do this:
+Add the component to your project's HTML using a `script` tag using a code CDN.
 
 ```html
-<script type="module" src="@greenweb/gaw-info-bar"></script>
+<script type="module" src="https://esm.sh/@greenweb/gaw-info-bar"></script>
+```
+
+### Add manually to a project
+
+Add the component to a project manually. To do this:
+
+1. Copy the `dist/gaw-info-bar.js` file to your project.
+2. In your project's HTML add the following script tag:
+
+```html
+<script type="module" src="path/to/gaw-info-bar.js"></script>
 ```
 
 ## Usage
