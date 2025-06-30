@@ -1,5 +1,5 @@
 > [!WARNING]
-> This web component is still being actively developed.
+> This web component is still being actively developed. It is currently not suitable for production use.
 
 # Grid-aware Websites Info Bar
 
