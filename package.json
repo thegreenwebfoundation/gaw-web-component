@@ -2,7 +2,7 @@
   "name": "@greenweb/gaw-info-bar",
   "version": "0.0.0",
   "type": "module",
-  "description": "Web component that provides contextual information about local energy grids for grid-aware website designs",
+  "description": "Web component for providing context and user control of grid-aware websites.",
   "main": "dist/gaw-info-bar.cjs",
   "module": "dist/gaw-info-bar.js",
   "exports": {
