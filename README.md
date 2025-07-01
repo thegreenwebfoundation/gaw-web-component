@@ -130,8 +130,8 @@ This component is built using standard web components and supports all modern br
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/thegreenwebfoundation/gaw-info-web-component.git
-   cd gaw-info-web-component
+   git clone https://github.com/thegreenwebfoundation/gaw-web-component.git
+   cd gaw-web-component
    ```
 
 2. Install dependencies:
