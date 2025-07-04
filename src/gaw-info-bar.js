@@ -6,6 +6,7 @@ export class GawInfoBar extends LitElement {
     return {
       location: { type: String },
       gridLevelText: { type: String },
+      learnMoreLink: { type: String },
       autoMode: { type: Boolean },
     };
   }
@@ -19,6 +20,7 @@ export class GawInfoBar extends LitElement {
     this.ignoreCookie = "gaw-ignore";
     this.ignoreCookieMaxAge = "Session";
     this.manualVersion = "low";
+    this.learnMoreLink = "#";
     this.addEventListener("load", this._init());
   }
 
@@ -83,7 +85,7 @@ export class GawInfoBar extends LitElement {
               </div>
                           <div class="popover__content">
                               <p class="popover__message">
-                                  This site changes its design based on the quantity of fossil fuels on the grid to stay inside a carbon budget at all times. Learn more
+                                  This site changes its design based on the quantity of fossil fuels on the grid to stay inside a carbon budget at all times. <a href="${this.learnMoreLink}">Learn more</a>
                               </p>
                           </div>
             </div>
@@ -217,6 +219,7 @@ export class GawInfoBar extends LitElement {
     this.ignoreCookieMaxAge =
       this.dataset.ignoreCookieMaxAge || this.ignoreCookieMaxAge;
     this.ignoreCookie = this.dataset.ignoreCookie || this.ignoreCookie;
+    this.learnMoreLink = this.dataset.learnMoreLink || this.learnMoreLink;
 
     try {
       const locationString = this._formatLocation(this.location);
@@ -400,7 +403,8 @@ export class GawInfoBar extends LitElement {
         /* left: -150px; */
         right: 5em;
         transform: translate(0, 10px);
-        background-color: #bfbfbf;
+        background-color: #fff;
+        border: 1px solid #ccc;
         /* padding: 1.5rem; */
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
         width: auto;
