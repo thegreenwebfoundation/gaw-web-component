@@ -47,7 +47,6 @@ export class GawInfoBar extends LitElement {
                               d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
                             />
                           </svg>
-
           </div>
           <p>${this.location}</p>
         </div>
@@ -65,8 +64,9 @@ export class GawInfoBar extends LitElement {
           </div>
             <div class="split-content">
               <p>${this.gridLevelText}</p>
+              <div class="popover__wrapper" @click="${this._togglePopoverClick}">
               <svg
-                  class="icon"
+                  class="icon popover__title"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -80,7 +80,12 @@ export class GawInfoBar extends LitElement {
                               d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
                             />
                           </svg>
-
+              </div>
+                          <div class="popover__content">
+                              <p class="popover__message">
+                                  This site changes its design based on the quantity of fossil fuels on the grid to stay inside a carbon budget at all times. Learn more
+                              </p>
+                          </div>
             </div>
           </div>
         </div>
@@ -192,6 +197,20 @@ export class GawInfoBar extends LitElement {
     return null;
   }
 
+  /**
+   * Toggle the data-clicked attribute on the popover wrapper element
+   * @param {Event} event - The click event
+   * @private
+   */
+  _togglePopoverClick(event) {
+    const element = event.currentTarget;
+    if (element.hasAttribute("data-clicked")) {
+      element.removeAttribute("data-clicked");
+    } else {
+      element.setAttribute("data-clicked", "");
+    }
+  }
+
   _init() {
     const level = this.dataset.gawLevel || this.level;
     this.location = this.dataset.gawLocation || this.location;
@@ -258,6 +277,7 @@ export class GawInfoBar extends LitElement {
       }
 
       .holder {
+        position: relative;
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -366,6 +386,52 @@ export class GawInfoBar extends LitElement {
 
       button:not(:disabled)[data-active] {
         background: var(--activeButtonBackgroundColor);
+      }
+
+      .popover__wrapper {
+        position: relative;
+        cursor: pointer;
+      }
+
+      .popover__content {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        /* left: -150px; */
+        right: 5em;
+        transform: translate(0, 10px);
+        background-color: #bfbfbf;
+        /* padding: 1.5rem; */
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        width: auto;
+      }
+      /* .popover__content:before {
+        position: absolute;
+        z-index: -1;
+        content: "";
+        right: calc(50% - 10px);
+        top: -8px;
+        border-style: solid;
+        border-width: 0 10px 10px 10px;
+        border-color: transparent transparent #bfbfbf transparent;
+        transition-duration: 0.3s;
+        transition-property: transform;
+      } */
+      .popover__content {
+        transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+      }
+
+      .popover__wrapper:hover + .popover__content,
+      .popover__wrapper:focus + .popover__content,
+      .popover__wrapper:focus-within + .popover__content,
+      .popover__wrapper[data-clicked] + .popover__content {
+        z-index: 10;
+        opacity: 1;
+        visibility: visible;
+        transform: translate(0, 0);
+      }
+      .popover__message {
+        text-align: center;
       }
     `;
   }
