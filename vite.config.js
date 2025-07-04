@@ -12,14 +12,5 @@ export default defineConfig({
       fileName: "gaw-info-bar",
       formats: ["es"],
     },
-    rollupOptions: {
-      external: ["lit"],
-      output: {
-        globals: {
-          lit: "Lit",
-        },
-        exports: "named",
-      },
-    },
   },
 });
