@@ -39,6 +39,6 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thegreenwebfoundation/gaw-info-web-component"
+    "url": "https://github.com/thegreenwebfoundation/gaw-web-component"
   }
 }
