@@ -9,7 +9,13 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
         />
-        <script type="module" src="./dist/gaw-info-bar.js"></script>
+        <script type="module">
+            if (import.meta.env.DEV === true) {
+                import("./src/index.js");
+            } else {
+                import("./dist/gaw-info-bar.js");
+            }
+        </script>
     </head>
     <body>
         <main class="container-fluid">
