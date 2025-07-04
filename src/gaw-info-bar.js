@@ -87,7 +87,7 @@ export class GawInfoBar extends LitElement {
         <div id="gaw-info-controls">
           <div class="holder">
             <div class="divider" id="gaw-info-bar-auto">
-              <p>Grid-aware design</p>
+              <p>Grid-aware Mode</p>
               <label>
                 <input
                   type="checkbox"
@@ -238,6 +238,7 @@ export class GawInfoBar extends LitElement {
         justify-content: space-between;
         padding: 0.5rem 1rem;
         font-family: monospace;
+        /* font-size: 16px; */
         max-width: 1920px;
         text-transform: uppercase;
         gap: 0.5rem;
@@ -246,6 +247,7 @@ export class GawInfoBar extends LitElement {
       }
 
       :host > div {
+        font-size: 0.75em;
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -268,8 +270,8 @@ export class GawInfoBar extends LitElement {
       }
 
       .icon {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.5em;
+        height: 1.5em;
         position: relative;
       }
 
@@ -282,11 +284,11 @@ export class GawInfoBar extends LitElement {
       div.divider:after {
         content: "";
         position: absolute;
-        height: calc(100% + 1rem);
+        height: calc(100% - 0.8em);
         width: 1px;
         background-color: #b8bcb5;
-        top: -0.5rem;
-        right: -0.25rem;
+        top: 0.4em;
+        right: -0.25em;
       }
 
       .split-content {
@@ -312,8 +314,8 @@ export class GawInfoBar extends LitElement {
       }
 
       div.divider:has(input):after {
-        height: calc(100% - 1rem);
-        top: 0.5rem;
+        height: calc(100% - 1.5rem);
+        top: 0.75rem;
       }
 
       .spaced {
