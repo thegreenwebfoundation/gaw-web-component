@@ -94,7 +94,7 @@ export class GawInfoBar extends LitElement {
         <div id="gaw-info-controls">
           <div class="holder">
             <div class="divider" id="gaw-info-bar-auto">
-              <p id="toggle-label-text">Grid-aware mode toggle</p>
+              <p id="toggle-label-text">Grid-aware mode</p>
               <label class="toggle-switch" for="gaw-info-bar-settings-auto-toggle">
                 <input
                   type="checkbox"
