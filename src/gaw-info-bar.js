@@ -419,7 +419,7 @@ export class GawInfoBar extends LitElement {
         width: 1.75em;
         left: 0.15em;
         bottom: 0.2em;
-        background-color: white;
+        background-color: currentColor;
         border-radius: 50%;
         transition: 0.4s;
       }
