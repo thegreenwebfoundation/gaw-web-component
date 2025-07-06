@@ -380,6 +380,7 @@ export class GawInfoBar extends LitElement {
         background: none;
         border: none;
         font-family: inherit;
+        padding: 0.5rem 0.75rem;
       }
 
       /* Toggle Switch Styles */
