@@ -94,15 +94,20 @@ export class GawInfoBar extends LitElement {
         <div id="gaw-info-controls">
           <div class="holder">
             <div class="divider" id="gaw-info-bar-auto">
-              <p>Grid-aware Mode</p>
-              <label>
+              <p id="toggle-label-text">Grid-aware mode toggle</p>
+              <label class="toggle-switch" for="gaw-info-bar-settings-auto-toggle">
                 <input
                   type="checkbox"
                   ?checked="${this.autoMode}"
                   id="gaw-info-bar-settings-auto-toggle"
                   @change="${this._handleAutoToggleChange}"
+                  @keydown="${this._handleToggleKeydown}"
+                  aria-labelledby="toggle-label-text"
+                  role="switch"
+                  aria-checked="${this.autoMode ? "true" : "false"}"
                 />
-                Auto
+                <span class="toggle-slider" aria-hidden="true"></span>
+                <span class="toggle-label">Auto</span>
               </label>
             </div>
             <div id="gaw-info-bar-manual" class="spaced">
@@ -148,6 +153,9 @@ export class GawInfoBar extends LitElement {
   _handleAutoToggleChange(event) {
     this.autoMode = event.target.checked;
 
+    // Update ARIA attributes
+    event.target.setAttribute("aria-checked", this.autoMode ? "true" : "false");
+
     if (this.autoMode) {
       document.cookie = `${this.ignoreCookie}=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
       document.cookie = `gaw-manual-view=low; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
@@ -168,6 +176,25 @@ export class GawInfoBar extends LitElement {
     const mode = event.target.id.split("-").pop();
     document.cookie = `gaw-manual-view=${mode}; path=/; max-age=${this.ignoreCookieMaxAge}`;
     window.location.reload();
+  }
+
+  /**
+   * Handles keyboard events for the toggle switch
+   * @param {KeyboardEvent} event - The keyboard event
+   * @private
+   */
+  _handleToggleKeydown(event) {
+    // Handle spacebar and enter key to toggle the switch
+    if (event.key === " " || event.key === "Enter") {
+      event.preventDefault();
+      this.autoMode = !this.autoMode;
+      event.target.checked = this.autoMode;
+      event.target.setAttribute(
+        "aria-checked",
+        this.autoMode ? "true" : "false",
+      );
+      this._handleAutoToggleChange({ target: event.target });
+    }
   }
 
   _checkIsActive(mode) {
@@ -355,10 +382,158 @@ export class GawInfoBar extends LitElement {
         font-family: inherit;
       }
 
-      label:has(input) {
+      /* Toggle Switch Styles */
+      .toggle-switch {
+        position: relative;
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        cursor: pointer;
+        user-select: none;
+        min-height: 28px; /* Ensure minimum touch target size */
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        position: absolute;
+      }
+
+      .toggle-slider {
+        position: relative;
+        display: inline-block;
+        width: 3.75em;
+        height: 2.25em;
+        background-color: #ccc;
+        border-radius: 1.25em;
+        transition: all 0.4s ease;
+        box-sizing: border-box;
+        border: 1px solid transparent;
+      }
+
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 1.75em;
+        width: 1.75em;
+        left: 0.15em;
+        bottom: 0.2em;
+        background-color: white;
+        border-radius: 50%;
+        transition: 0.4s;
+      }
+
+      /* On state */
+      .toggle-switch input:checked + .toggle-slider {
+        background-color: #86ca7a;
+      }
+
+      /* Hover state */
+      .toggle-switch:hover .toggle-slider {
+        background-color: #b3b3b3;
+      }
+
+      .toggle-switch:hover input:checked + .toggle-slider {
+        background-color: #75b369;
+      }
+
+      /* Active/pressed state */
+      .toggle-switch:active .toggle-slider {
+        background-color: #999999;
+      }
+
+      .toggle-switch:active input:checked + .toggle-slider {
+        background-color: #5d9a53;
+      }
+
+      /* Focus states for accessibility */
+      .toggle-switch input:focus + .toggle-slider {
+        box-shadow: 0 0 2px 2px rgba(77, 144, 254, 0.5);
+      }
+
+      .toggle-switch input:checked + .toggle-slider:before {
+        transform: translateX(1.55em);
+      }
+
+      .toggle-label {
+        user-select: none;
+      }
+
+      /* For visual accessibility */
+      .toggle-switch input:focus-visible + .toggle-slider {
+        outline: 2px solid #4d90fe;
+        outline-offset: 1px;
+      }
+
+      /* High contrast mode support */
+      @media (forced-colors: active) {
+        .toggle-slider {
+          border: 1px solid CanvasText;
+        }
+        .toggle-slider:before {
+          background-color: CanvasText;
+        }
+        .toggle-switch input:checked + .toggle-slider {
+          background-color: Highlight;
+        }
+      }
+
+      /* Keyboard accessibility improvements */
+      .toggle-switch:focus-within {
+        outline: 2px solid transparent;
+      }
+
+      /* Improve toggle interactive states */
+      .toggle-switch input:disabled + .toggle-slider {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .toggle-slider {
+        cursor: pointer;
+      }
+
+      /* Improve touch target size for mobile accessibility */
+      @media (pointer: coarse) {
+        .toggle-slider {
+          width: 2.8em;
+          height: 1.5em;
+        }
+
+        .toggle-slider:before {
+          height: 1.1em;
+          width: 1.1em;
+          bottom: 0.2em;
+        }
+
+        .toggle-switch input:checked + .toggle-slider:before {
+          transform: translateX(1.3em);
+        }
+      }
+
+      /* Reduce motion preference support */
+      @media (prefers-reduced-motion: reduce) {
+        .toggle-slider,
+        .toggle-slider:before {
+          transition-duration: 0.1s;
+        }
+      }
+
+      /* Support for Windows High Contrast Mode */
+      @media screen and (-ms-high-contrast: active) {
+        .toggle-slider {
+          background-color: WindowText;
+          border: 1px solid WindowText;
+        }
+
+        .toggle-slider:before {
+          background-color: Window;
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+          background-color: Highlight;
+        }
       }
 
       :host
