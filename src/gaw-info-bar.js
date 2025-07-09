@@ -27,99 +27,109 @@ export class GawInfoBar extends LitElement {
   render() {
     return html`
       <div>
-        <div class="holder">
-          <div class="divider">
-              <svg
+        <div class="outer-container">
+          <div class="inner-container">
+
+            <div class="holder grid-status">
+              <div class="divider">
+                <svg
                   class="icon"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="size-6"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                            />
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-                            />
-                          </svg>
-          </div>
-          <p>${this.location}</p>
-        </div>
-        <div class="holder">
-          <div class="divider">
-            <svg
-              class="icon"
-              viewBox="0 0 100 100"
-              width="100%"
-              height="100%"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="50" cy="50" r="40" fill="${this.circleFill}" />
-            </svg>
-          </div>
-            <div class="split-content">
-              <p>${this.gridLevelText}</p>
-              <div class="popover__wrapper" @click="${this._togglePopoverClick}">
-              <svg
-                  class="icon popover__title"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="size-6"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-                            />
-                          </svg>
+                  viewBox="0 0 100 100"
+                  width="100%"
+                  height="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                  >
+                  <circle cx="50" cy="50" r="40" fill="${this.circleFill}" />
+                </svg>
               </div>
-                          <div class="popover__content">
-                              <p class="popover__message">
-                                  This site changes its design based on the quantity of fossil fuels on the grid to stay inside a carbon budget at all times. <a href="${this.learnMoreLink}">Learn more</a>
-                              </p>
-                          </div>
+
+              <div class="split-content">
+                <p>${this.gridLevelText}</p>
+               
+                <div class="popover__wrapper" @click="${this._togglePopoverClick}">
+                  <svg
+                    class="icon popover__title"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="size-6"
+                      >
+                      <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                      />    
+                  </svg>
+                </div>
+
+                <div class="popover__content">
+                    <p class="popover__message">
+                      This site changes its design based on the quantity of fossil fuels on the grid to stay inside a carbon budget at all times. <a href="${this.learnMoreLink}">Learn more</a>
+                    </p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div id="gaw-info-controls">
-          <div class="holder">
-            <div class="divider" id="gaw-info-bar-auto">
-              <p id="toggle-label-text">Grid-aware mode</p>
-              <label class="toggle-switch" for="gaw-info-bar-settings-auto-toggle">
-                <input
-                  type="checkbox"
-                  ?checked="${this.autoMode}"
-                  id="gaw-info-bar-settings-auto-toggle"
-                  @change="${this._handleAutoToggleChange}"
-                  @keydown="${this._handleToggleKeydown}"
-                  aria-labelledby="toggle-label-text"
-                  role="switch"
-                  aria-checked="${this.autoMode ? "true" : "false"}"
-                />
-                <span class="toggle-slider" aria-hidden="true"></span>
-                <span class="toggle-label">Auto</span>
-              </label>
-            </div>
-            <div id="gaw-info-bar-manual" class="spaced">
-              <button id="gaw-info-bar-settings-manual-low" ?disabled="${this.autoMode}" @click=${this._handleManualModeChange} ?data-active=${this._checkIsActive("low")}>
-                Low
-              </button>
-              <button id="gaw-info-bar-settings-manual-moderate" ?disabled="${this.autoMode}" @click=${this._handleManualModeChange} ?data-active=${this._checkIsActive("moderate")}>
-                Moderate
-              </button>
-              <button id="gaw-info-bar-settings-manual-high" ?disabled="${this.autoMode}" @click=${this._handleManualModeChange} ?data-active=${this._checkIsActive("high")}>
-                High
-              </button>
+
+            <div class="holder location">
+              <div class="divider">
+                <svg
+                  class="icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                  >
+                  <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  />
+                  <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                  />
+                </svg>
+              </div>
+              <p>${this.location}</p>
+            </div>            
+        
+            <div id="gaw-info-controls">
+              <div class="holder">
+                <div class="divider" id="gaw-info-bar-auto">
+                  <p id="toggle-label-text">Grid-aware mode</p>
+                  <label class="toggle-switch" for="gaw-info-bar-settings-auto-toggle">
+                    <input
+                      type="checkbox"
+                      ?checked="${this.autoMode}"
+                      id="gaw-info-bar-settings-auto-toggle"
+                      @change="${this._handleAutoToggleChange}"
+                      @keydown="${this._handleToggleKeydown}"
+                      aria-labelledby="toggle-label-text"
+                      role="switch"
+                      aria-checked="${this.autoMode ? "true" : "false"}"
+                    />
+                    <span class="toggle-slider" aria-hidden="true"></span>
+                    <span class="toggle-label">Auto</span>
+                  </label>
+                </div>
+
+                <div id="gaw-info-bar-manual" class="spaced">
+                  <button id="gaw-info-bar-settings-manual-low" ?disabled="${this.autoMode}" @click=${this._handleManualModeChange} ?data-active=${this._checkIsActive("low")}>
+                    Low
+                  </button>
+                  <button id="gaw-info-bar-settings-manual-moderate" ?disabled="${this.autoMode}" @click=${this._handleManualModeChange} ?data-active=${this._checkIsActive("moderate")}>
+                    Moderate
+                  </button>
+                  <button id="gaw-info-bar-settings-manual-high" ?disabled="${this.autoMode}" @click=${this._handleManualModeChange} ?data-active=${this._checkIsActive("high")}>
+                    High
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -281,28 +291,41 @@ export class GawInfoBar extends LitElement {
 
   static get styles() {
     return css`
-      :host {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+      :root {
+
+      }
+
+      .outer-container {
+        container-type: inline-size;
+      }
+
+      .inner-container {
         padding: 0.5rem 1rem;
         font-family: monospace;
         /* font-size: 16px; */
-        max-width: 1920px;
         text-transform: uppercase;
-        gap: 0.5rem;
         color: inherit;
         /* flex-wrap: wrap-reverse; */
+        container-type: inline-size;
       }
 
-      :host > div {
+      @container (width > 767px) {
+        .inner-container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.5rem;
+        }
+      }
+
+      .container > div {
         font-size: 0.75em;
         display: flex;
         align-items: center;
         gap: 0.5rem;
       }
 
-      :host > .wrapper {
+      .container > .wrapper {
         max-width: 600px;
       }
 
