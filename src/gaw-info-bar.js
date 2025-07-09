@@ -98,7 +98,7 @@ export class GawInfoBar extends LitElement {
               <p>${this.location}</p>
             </div>            
         
-            <div id="gaw-info-controls">
+            <div id="gaw-info-controls" class="controls">
               <div class="holder">
                 <div class="divider" id="gaw-info-bar-auto">
                   <p id="toggle-label-text">Grid-aware mode</p>
@@ -297,36 +297,17 @@ export class GawInfoBar extends LitElement {
 
       .outer-container {
         container-type: inline-size;
+        container-name: wrapper;
       }
 
       .inner-container {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0;
         font-family: monospace;
         /* font-size: 16px; */
         text-transform: uppercase;
         color: inherit;
         /* flex-wrap: wrap-reverse; */
         container-type: inline-size;
-      }
-
-      @container (width > 767px) {
-        .inner-container {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 0.5rem;
-        }
-      }
-
-      .container > div {
-        font-size: 0.75em;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .container > .wrapper {
-        max-width: 600px;
       }
 
       .holder {
@@ -635,6 +616,28 @@ export class GawInfoBar extends LitElement {
       }
       .popover__message {
         text-align: center;
+      }
+
+      @container wrapper (width > 767px) {
+        .inner-container {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+        .location {
+          order: 1;
+        }
+        .grid-status {
+          order: 2;
+        }
+        .controls {
+          order: 3;
+          flex-grow: 1;
+          display: flex;
+          justify-content: flex-end;
+        }
       }
     `;
   }
