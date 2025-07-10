@@ -1,6 +1,6 @@
 {
   "name": "@greenweb/gaw-info-bar",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "description": "Web component for providing context and user control of grid-aware websites.",
   "main": "dist/gaw-info-bar.cjs",
