@@ -324,6 +324,22 @@ export class GawInfoBar extends LitElement {
         color: inherit;
         /* flex-wrap: wrap-reverse; */
         container-type: inline-size;
+        display: grid;
+        grid-template-areas:
+          "status location"
+          "controls controls";
+      }
+
+      .controls {
+        grid-area: controls;
+      }
+
+      .location {
+        grid-area: location;
+      }
+
+      .grid-status {
+        grid-area: status;
       }
 
       .holder {
@@ -393,7 +409,7 @@ export class GawInfoBar extends LitElement {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        gap: 1rem;
+        gap: 0.5rem;
       }
 
       button {
@@ -634,7 +650,32 @@ export class GawInfoBar extends LitElement {
         text-align: center;
       }
 
-      @container wrapper (width > 767px) {
+      .controls .divider {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        row-gap: 0;
+      }
+
+      .controls > .holder {
+        flex-wrap: wrap;
+      }
+
+      @container wrapper (width < 640px) {
+        .inner-container {
+          grid-template-areas:
+            "status"
+            "location"
+            "controls";
+        }
+      }
+
+      @container wrapper (width < 490px) {
+        .controls .divider:after {
+          display: none;
+        }
+      }
+
+      @container wrapper (width > 1023px) {
         .inner-container {
           display: flex;
           align-items: center;
@@ -653,6 +694,10 @@ export class GawInfoBar extends LitElement {
           flex-grow: 1;
           display: flex;
           justify-content: flex-end;
+        }
+
+        .controls .divider:after {
+          display: none;
         }
       }
     `;
