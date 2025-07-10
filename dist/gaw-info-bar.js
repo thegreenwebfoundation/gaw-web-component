@@ -45,7 +45,7 @@ const se = (n) => new te(typeof n == "string" ? n : n + "", void 0, W), le = (n,
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const { is: me, defineProperty: ce, getOwnPropertyDescriptor: de, getOwnPropertyNames: Ne, getOwnPropertySymbols: ue, getPrototypeOf: pe } = Object, g = globalThis, V = g.trustedTypes, ge = V ? V.emptyScript : "", L = g.reactiveElementPolyfillSupport, $ = (n, e) => n, H = { toAttribute(n, e) {
+const { is: ce, defineProperty: me, getOwnPropertyDescriptor: de, getOwnPropertyNames: Ne, getOwnPropertySymbols: ue, getPrototypeOf: pe } = Object, g = globalThis, V = g.trustedTypes, ge = V ? V.emptyScript : "", L = g.reactiveElementPolyfillSupport, b = (n, e) => n, H = { toAttribute(n, e) {
   switch (e) {
     case Boolean:
       n = n ? ge : null;
@@ -73,7 +73,7 @@ const { is: me, defineProperty: ce, getOwnPropertyDescriptor: de, getOwnProperty
       }
   }
   return t;
-} }, oe = (n, e) => !me(n, e), J = { attribute: !0, type: String, converter: H, reflect: !1, useDefault: !1, hasChanged: oe };
+} }, oe = (n, e) => !ce(n, e), J = { attribute: !0, type: String, converter: H, reflect: !1, useDefault: !1, hasChanged: oe };
 Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), g.litPropertyMetadata ?? (g.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
 let C = class extends HTMLElement {
   static addInitializer(e) {
@@ -85,7 +85,7 @@ let C = class extends HTMLElement {
   static createProperty(e, t = J) {
     if (t.state && (t.attribute = !1), this._$Ei(), this.prototype.hasOwnProperty(e) && ((t = Object.create(t)).wrapped = !0), this.elementProperties.set(e, t), !t.noAccessor) {
       const o = Symbol(), a = this.getPropertyDescriptor(e, o, t);
-      a !== void 0 && ce(this.prototype, e, a);
+      a !== void 0 && me(this.prototype, e, a);
     }
   }
   static getPropertyDescriptor(e, t, o) {
@@ -103,13 +103,13 @@ let C = class extends HTMLElement {
     return this.elementProperties.get(e) ?? J;
   }
   static _$Ei() {
-    if (this.hasOwnProperty($("elementProperties"))) return;
+    if (this.hasOwnProperty(b("elementProperties"))) return;
     const e = pe(this);
     e.finalize(), e.l !== void 0 && (this.l = [...e.l]), this.elementProperties = new Map(e.elementProperties);
   }
   static finalize() {
-    if (this.hasOwnProperty($("finalized"))) return;
-    if (this.finalized = !0, this._$Ei(), this.hasOwnProperty($("properties"))) {
+    if (this.hasOwnProperty(b("finalized"))) return;
+    if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(b("properties"))) {
       const t = this.properties, o = [...Ne(t), ...ue(t)];
       for (const a of o) this.createProperty(a, t[a]);
     }
@@ -276,28 +276,28 @@ let C = class extends HTMLElement {
   firstUpdated(e) {
   }
 };
-C.elementStyles = [], C.shadowRootOptions = { mode: "open" }, C[$("elementProperties")] = /* @__PURE__ */ new Map(), C[$("finalized")] = /* @__PURE__ */ new Map(), L == null || L({ ReactiveElement: C }), (g.reactiveElementVersions ?? (g.reactiveElementVersions = [])).push("2.1.0");
+C.elementStyles = [], C.shadowRootOptions = { mode: "open" }, C[b("elementProperties")] = /* @__PURE__ */ new Map(), C[b("finalized")] = /* @__PURE__ */ new Map(), L == null || L({ ReactiveElement: C }), (g.reactiveElementVersions ?? (g.reactiveElementVersions = [])).push("2.1.0");
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const w = globalThis, T = w.trustedTypes, Z = T ? T.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, ae = "$lit$", p = `lit$${Math.random().toFixed(9).slice(2)}$`, ne = "?" + p, ze = `<${ne}>`, f = document, E = () => f.createComment(""), U = (n) => n === null || typeof n != "object" && typeof n != "function", D = Array.isArray, Se = (n) => D(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", B = `[ 	
-\f\r]`, b = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Y = /-->/g, j = />/g, z = RegExp(`>|${B}(?:([^\\s"'>=/]+)(${B}*=${B}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), q = /'/g, Q = /"/g, ie = /^(?:script|style|textarea|title)$/i, Ae = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), fe = Ae(1), v = Symbol.for("lit-noChange"), c = Symbol.for("lit-nothing"), X = /* @__PURE__ */ new WeakMap(), S = f.createTreeWalker(f, 129);
+const $ = globalThis, T = $.trustedTypes, Z = T ? T.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, ae = "$lit$", p = `lit$${Math.random().toFixed(9).slice(2)}$`, ne = "?" + p, ze = `<${ne}>`, f = document, E = () => f.createComment(""), U = (n) => n === null || typeof n != "object" && typeof n != "function", D = Array.isArray, Se = (n) => D(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", B = `[ 	
+\f\r]`, w = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, j = /-->/g, Y = />/g, z = RegExp(`>|${B}(?:([^\\s"'>=/]+)(${B}*=${B}*(?:[^ 	
+\f\r"'\`<>=]|("|')|))|$)`, "g"), q = /'/g, Q = /"/g, ie = /^(?:script|style|textarea|title)$/i, Ae = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), fe = Ae(1), v = Symbol.for("lit-noChange"), m = Symbol.for("lit-nothing"), X = /* @__PURE__ */ new WeakMap(), S = f.createTreeWalker(f, 129);
 function re(n, e) {
   if (!D(n) || !n.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return Z !== void 0 ? Z.createHTML(e) : e;
 }
 const Ce = (n, e) => {
   const t = n.length - 1, o = [];
-  let a, i = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", r = b;
+  let a, i = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", r = w;
   for (let l = 0; l < t; l++) {
     const s = n[l];
-    let m, d, h = -1, N = 0;
-    for (; N < s.length && (r.lastIndex = N, d = r.exec(s), d !== null); ) N = r.lastIndex, r === b ? d[1] === "!--" ? r = Y : d[1] !== void 0 ? r = j : d[2] !== void 0 ? (ie.test(d[2]) && (a = RegExp("</" + d[2], "g")), r = z) : d[3] !== void 0 && (r = z) : r === z ? d[0] === ">" ? (r = a ?? b, h = -1) : d[1] === void 0 ? h = -2 : (h = r.lastIndex - d[2].length, m = d[1], r = d[3] === void 0 ? z : d[3] === '"' ? Q : q) : r === Q || r === q ? r = z : r === Y || r === j ? r = b : (r = z, a = void 0);
+    let c, d, h = -1, N = 0;
+    for (; N < s.length && (r.lastIndex = N, d = r.exec(s), d !== null); ) N = r.lastIndex, r === w ? d[1] === "!--" ? r = j : d[1] !== void 0 ? r = Y : d[2] !== void 0 ? (ie.test(d[2]) && (a = RegExp("</" + d[2], "g")), r = z) : d[3] !== void 0 && (r = z) : r === z ? d[0] === ">" ? (r = a ?? w, h = -1) : d[1] === void 0 ? h = -2 : (h = r.lastIndex - d[2].length, c = d[1], r = d[3] === void 0 ? z : d[3] === '"' ? Q : q) : r === Q || r === q ? r = z : r === j || r === Y ? r = w : (r = z, a = void 0);
     const u = r === z && n[l + 1].startsWith("/>") ? " " : "";
-    i += r === b ? s + ze : h >= 0 ? (o.push(m), s.slice(0, h) + ae + s.slice(h) + p + u) : s + p + (h === -2 ? l : u);
+    i += r === w ? s + ze : h >= 0 ? (o.push(c), s.slice(0, h) + ae + s.slice(h) + p + u) : s + p + (h === -2 ? l : u);
   }
   return [re(n, i + (n[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), o];
 };
@@ -306,8 +306,8 @@ class M {
     let a;
     this.parts = [];
     let i = 0, r = 0;
-    const l = e.length - 1, s = this.parts, [m, d] = Ce(e, t);
-    if (this.el = M.createElement(m, o), S.currentNode = this.el.content, t === 2 || t === 3) {
+    const l = e.length - 1, s = this.parts, [c, d] = Ce(e, t);
+    if (this.el = M.createElement(c, o), S.currentNode = this.el.content, t === 2 || t === 3) {
       const h = this.el.content.firstChild;
       h.replaceWith(...h.childNodes);
     }
@@ -315,7 +315,7 @@ class M {
       if (a.nodeType === 1) {
         if (a.hasAttributes()) for (const h of a.getAttributeNames()) if (h.endsWith(ae)) {
           const N = d[r++], u = a.getAttribute(h).split(p), k = /([.?@])?(.*)/.exec(N);
-          s.push({ type: 1, index: i, name: k[2], strings: u, ctor: k[1] === "." ? ye : k[1] === "?" ? be : k[1] === "@" ? $e : x }), a.removeAttribute(h);
+          s.push({ type: 1, index: i, name: k[2], strings: u, ctor: k[1] === "." ? ye : k[1] === "?" ? we : k[1] === "@" ? be : x }), a.removeAttribute(h);
         } else h.startsWith(p) && (s.push({ type: 6, index: i }), a.removeAttribute(h));
         if (ie.test(a.tagName)) {
           const h = a.textContent.split(p), N = h.length - 1;
@@ -361,8 +361,8 @@ class ve {
     let i = S.nextNode(), r = 0, l = 0, s = o[0];
     for (; s !== void 0; ) {
       if (r === s.index) {
-        let m;
-        s.type === 2 ? m = new P(i, i.nextSibling, this, e) : s.type === 1 ? m = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (m = new we(i, this, e)), this._$AV.push(m), s = o[++l];
+        let c;
+        s.type === 2 ? c = new P(i, i.nextSibling, this, e) : s.type === 1 ? c = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (c = new $e(i, this, e)), this._$AV.push(c), s = o[++l];
       }
       r !== (s == null ? void 0 : s.index) && (i = S.nextNode(), r++);
     }
@@ -379,7 +379,7 @@ class P {
     return ((e = this._$AM) == null ? void 0 : e._$AU) ?? this._$Cv;
   }
   constructor(e, t, o, a) {
-    this.type = 2, this._$AH = c, this._$AN = void 0, this._$AA = e, this._$AB = t, this._$AM = o, this.options = a, this._$Cv = (a == null ? void 0 : a.isConnected) ?? !0;
+    this.type = 2, this._$AH = m, this._$AN = void 0, this._$AA = e, this._$AB = t, this._$AM = o, this.options = a, this._$Cv = (a == null ? void 0 : a.isConnected) ?? !0;
   }
   get parentNode() {
     let e = this._$AA.parentNode;
@@ -393,7 +393,7 @@ class P {
     return this._$AB;
   }
   _$AI(e, t = this) {
-    e = y(this, e, t), U(e) ? e === c || e == null || e === "" ? (this._$AH !== c && this._$AR(), this._$AH = c) : e !== this._$AH && e !== v && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : Se(e) ? this.k(e) : this._(e);
+    e = y(this, e, t), U(e) ? e === m || e == null || e === "" ? (this._$AH !== m && this._$AR(), this._$AH = m) : e !== this._$AH && e !== v && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : Se(e) ? this.k(e) : this._(e);
   }
   O(e) {
     return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -402,7 +402,7 @@ class P {
     this._$AH !== e && (this._$AR(), this._$AH = this.O(e));
   }
   _(e) {
-    this._$AH !== c && U(this._$AH) ? this._$AA.nextSibling.data = e : this.T(f.createTextNode(e)), this._$AH = e;
+    this._$AH !== m && U(this._$AH) ? this._$AA.nextSibling.data = e : this.T(f.createTextNode(e)), this._$AH = e;
   }
   $(e) {
     var i;
@@ -444,7 +444,7 @@ class x {
     return this._$AM._$AU;
   }
   constructor(e, t, o, a, i) {
-    this.type = 1, this._$AH = c, this._$AN = void 0, this.element = e, this.name = t, this._$AM = a, this.options = i, o.length > 2 || o[0] !== "" || o[1] !== "" ? (this._$AH = Array(o.length - 1).fill(new String()), this.strings = o) : this._$AH = c;
+    this.type = 1, this._$AH = m, this._$AN = void 0, this.element = e, this.name = t, this._$AM = a, this.options = i, o.length > 2 || o[0] !== "" || o[1] !== "" ? (this._$AH = Array(o.length - 1).fill(new String()), this.strings = o) : this._$AH = m;
   }
   _$AI(e, t = this, o, a) {
     const i = this.strings;
@@ -452,13 +452,13 @@ class x {
     if (i === void 0) e = y(this, e, t, 0), r = !U(e) || e !== this._$AH && e !== v, r && (this._$AH = e);
     else {
       const l = e;
-      let s, m;
-      for (e = i[0], s = 0; s < i.length - 1; s++) m = y(this, l[o + s], t, s), m === v && (m = this._$AH[s]), r || (r = !U(m) || m !== this._$AH[s]), m === c ? e = c : e !== c && (e += (m ?? "") + i[s + 1]), this._$AH[s] = m;
+      let s, c;
+      for (e = i[0], s = 0; s < i.length - 1; s++) c = y(this, l[o + s], t, s), c === v && (c = this._$AH[s]), r || (r = !U(c) || c !== this._$AH[s]), c === m ? e = m : e !== m && (e += (c ?? "") + i[s + 1]), this._$AH[s] = c;
     }
     r && !a && this.j(e);
   }
   j(e) {
-    e === c ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
+    e === m ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
   }
 }
 class ye extends x {
@@ -466,24 +466,24 @@ class ye extends x {
     super(...arguments), this.type = 3;
   }
   j(e) {
-    this.element[this.name] = e === c ? void 0 : e;
+    this.element[this.name] = e === m ? void 0 : e;
   }
 }
-class be extends x {
+class we extends x {
   constructor() {
     super(...arguments), this.type = 4;
   }
   j(e) {
-    this.element.toggleAttribute(this.name, !!e && e !== c);
+    this.element.toggleAttribute(this.name, !!e && e !== m);
   }
 }
-class $e extends x {
+class be extends x {
   constructor(e, t, o, a, i) {
     super(e, t, o, a, i), this.type = 5;
   }
   _$AI(e, t = this) {
-    if ((e = y(this, e, t, 0) ?? c) === v) return;
-    const o = this._$AH, a = e === c && o !== c || e.capture !== o.capture || e.once !== o.once || e.passive !== o.passive, i = e !== c && (o === c || a);
+    if ((e = y(this, e, t, 0) ?? m) === v) return;
+    const o = this._$AH, a = e === m && o !== m || e.capture !== o.capture || e.once !== o.once || e.passive !== o.passive, i = e !== m && (o === m || a);
     a && this.element.removeEventListener(this.name, this, o), i && this.element.addEventListener(this.name, this, e), this._$AH = e;
   }
   handleEvent(e) {
@@ -491,7 +491,7 @@ class $e extends x {
     typeof this._$AH == "function" ? this._$AH.call(((t = this.options) == null ? void 0 : t.host) ?? this.element, e) : this._$AH.handleEvent(e);
   }
 }
-class we {
+class $e {
   constructor(e, t, o) {
     this.element = e, this.type = 6, this._$AN = void 0, this._$AM = t, this.options = o;
   }
@@ -502,8 +502,8 @@ class we {
     y(this, e);
   }
 }
-const R = w.litHtmlPolyfillSupport;
-R == null || R(M, P), (w.litHtmlVersions ?? (w.litHtmlVersions = [])).push("3.3.0");
+const R = $.litHtmlPolyfillSupport;
+R == null || R(M, P), ($.litHtmlVersions ?? ($.litHtmlVersions = [])).push("3.3.0");
 const _e = (n, e, t) => {
   const o = (t == null ? void 0 : t.renderBefore) ?? e;
   let a = o._$litPart$;
@@ -1796,100 +1796,130 @@ class Ue extends _ {
   }
   render() {
     return fe`
-      <div>
-        <div class="holder">
-          <div class="divider">
+      <div class="outer-container">
+        <div class="inner-container">
+          <div class="holder grid-status">
+            <div class="divider">
               <svg
-                  class="icon"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="size-6"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                            />
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-                            />
-                          </svg>
-          </div>
-          <p>${this.location}</p>
-        </div>
-        <div class="holder">
-          <div class="divider">
-            <svg
-              class="icon"
-              viewBox="0 0 100 100"
-              width="100%"
-              height="100%"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="50" cy="50" r="40" fill="${this.circleFill}" />
-            </svg>
-          </div>
+                class="icon"
+                viewBox="0 0 100 100"
+                width="100%"
+                height="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="50" cy="50" r="40" fill="${this.circleFill}" />
+              </svg>
+            </div>
+
             <div class="split-content">
               <p>${this.gridLevelText}</p>
-              <div class="popover__wrapper" @click="${this._togglePopoverClick}">
-              <svg
+
+              <div
+                class="popover__wrapper"
+                @click="${this._togglePopoverClick}"
+              >
+                <svg
                   class="icon popover__title"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="size-6"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-                            />
-                          </svg>
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                  />
+                </svg>
               </div>
-                          <div class="popover__content">
-                              <p class="popover__message">
-                                  This site changes its design based on the quantity of fossil fuels on the grid to stay inside a carbon budget at all times. <a href="${this.learnMoreLink}">Learn more</a>
-                              </p>
-                          </div>
+
+              <div class="popover__content">
+                <p class="popover__message">
+                  This site changes its design based on the quantity of fossil
+                  fuels on the grid to stay inside a carbon budget at all times.
+                  <a href="${this.learnMoreLink}">Learn more</a>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div id="gaw-info-controls">
-          <div class="holder">
-            <div class="divider" id="gaw-info-bar-auto">
-              <p id="toggle-label-text">Grid-aware mode</p>
-              <label class="toggle-switch" for="gaw-info-bar-settings-auto-toggle">
-                <input
-                  type="checkbox"
-                  ?checked="${this.autoMode}"
-                  id="gaw-info-bar-settings-auto-toggle"
-                  @change="${this._handleAutoToggleChange}"
-                  @keydown="${this._handleToggleKeydown}"
-                  aria-labelledby="toggle-label-text"
-                  role="switch"
-                  aria-checked="${this.autoMode ? "true" : "false"}"
+
+          <div class="holder location">
+            <div class="divider">
+              <svg
+                class="icon"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                 />
-                <span class="toggle-slider" aria-hidden="true"></span>
-                <span class="toggle-label">Auto</span>
-              </label>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                />
+              </svg>
             </div>
-            <div id="gaw-info-bar-manual" class="spaced">
-              <button id="gaw-info-bar-settings-manual-low" ?disabled="${this.autoMode}" @click=${this._handleManualModeChange} ?data-active=${this._checkIsActive("low")}>
-                Low
-              </button>
-              <button id="gaw-info-bar-settings-manual-moderate" ?disabled="${this.autoMode}" @click=${this._handleManualModeChange} ?data-active=${this._checkIsActive("moderate")}>
-                Moderate
-              </button>
-              <button id="gaw-info-bar-settings-manual-high" ?disabled="${this.autoMode}" @click=${this._handleManualModeChange} ?data-active=${this._checkIsActive("high")}>
-                High
-              </button>
+            <p>${this.location}</p>
+          </div>
+
+          <div id="gaw-info-controls" class="controls">
+            <div class="holder">
+              <div class="divider" id="gaw-info-bar-auto">
+                <p id="toggle-label-text">Grid-aware mode</p>
+                <label
+                  class="toggle-switch"
+                  for="gaw-info-bar-settings-auto-toggle"
+                >
+                  <input
+                    type="checkbox"
+                    ?checked="${this.autoMode}"
+                    id="gaw-info-bar-settings-auto-toggle"
+                    @change="${this._handleAutoToggleChange}"
+                    @keydown="${this._handleToggleKeydown}"
+                    aria-labelledby="toggle-label-text"
+                    role="switch"
+                    aria-checked="${this.autoMode ? "true" : "false"}"
+                  />
+                  <span class="toggle-slider" aria-hidden="true"></span>
+                  <span class="toggle-label">Auto</span>
+                </label>
+              </div>
+
+              <div id="gaw-info-bar-manual" class="spaced">
+                <button
+                  id="gaw-info-bar-settings-manual-low"
+                  ?disabled="${this.autoMode}"
+                  @click=${this._handleManualModeChange}
+                  ?data-active=${this._checkIsActive("low")}
+                >
+                  Low
+                </button>
+                <button
+                  id="gaw-info-bar-settings-manual-moderate"
+                  ?disabled="${this.autoMode}"
+                  @click=${this._handleManualModeChange}
+                  ?data-active=${this._checkIsActive("moderate")}
+                >
+                  Moderate
+                </button>
+                <button
+                  id="gaw-info-bar-settings-manual-high"
+                  ?disabled="${this.autoMode}"
+                  @click=${this._handleManualModeChange}
+                  ?data-active=${this._checkIsActive("high")}
+                >
+                  High
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -1982,29 +2012,35 @@ class Ue extends _ {
   }
   static get styles() {
     return le`
-      :host {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.5rem 1rem;
+      .outer-container {
+        container-type: inline-size;
+        container-name: wrapper;
+      }
+
+      .inner-container {
+        padding: 0.5rem 0;
         font-family: monospace;
         /* font-size: 16px; */
-        max-width: 1920px;
         text-transform: uppercase;
-        gap: 0.5rem;
         color: inherit;
         /* flex-wrap: wrap-reverse; */
+        container-type: inline-size;
+        display: grid;
+        grid-template-areas:
+          "status location"
+          "controls controls";
       }
 
-      :host > div {
-        font-size: 0.75em;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+      .controls {
+        grid-area: controls;
       }
 
-      :host > .wrapper {
-        max-width: 600px;
+      .location {
+        grid-area: location;
+      }
+
+      .grid-status {
+        grid-area: status;
       }
 
       .holder {
@@ -2074,7 +2110,7 @@ class Ue extends _ {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        gap: 1rem;
+        gap: 0.5rem;
       }
 
       button {
@@ -2239,8 +2275,8 @@ class Ue extends _ {
       }
 
       :host
-        > div:has(+ #gaw-info-controls label > input:not([checked]))
-        > .holder {
+        .inner-container:has(#gaw-info-controls label > input:not([checked]))
+        > .holder:not(#gaw-info-controls) {
         display: none;
       }
 
@@ -2313,6 +2349,57 @@ class Ue extends _ {
       }
       .popover__message {
         text-align: center;
+      }
+
+      .controls .divider {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        row-gap: 0;
+      }
+
+      .controls > .holder {
+        flex-wrap: wrap;
+      }
+
+      @container wrapper (width < 640px) {
+        .inner-container {
+          grid-template-areas:
+            "status"
+            "location"
+            "controls";
+        }
+      }
+
+      @container wrapper (width < 490px) {
+        .controls .divider:after {
+          display: none;
+        }
+      }
+
+      @container wrapper (width > 1023px) {
+        .inner-container {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+        .location {
+          order: 1;
+        }
+        .grid-status {
+          order: 2;
+        }
+        .controls {
+          order: 3;
+          flex-grow: 1;
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        .controls .divider:after {
+          display: none;
+        }
       }
     `;
   }
