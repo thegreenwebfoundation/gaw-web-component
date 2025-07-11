@@ -319,7 +319,7 @@ export class GawInfoBar extends LitElement {
       .inner-container {
         padding: 0.5rem 0;
         font-family: monospace;
-        /* font-size: 16px; */
+        font-size: 0.8em;
         text-transform: uppercase;
         color: inherit;
         /* flex-wrap: wrap-reverse; */
