@@ -48,24 +48,26 @@ export class GawInfoBar extends LitElement {
                 class="popover__wrapper"
                 @click="${this._togglePopoverClick}"
               >
-                <svg
-                  class="icon popover__title"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-                  />
-                </svg>
+                <button popovertarget="mypopover">
+                  <svg
+                    class="icon popover__title"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                    />
+                  </svg>
+                </button>
               </div>
 
-              <div class="popover__content">
+              <div class="popover__content" id="mypopover" popover>
                 <p class="popover__message">
                   This site changes its design based on the quantity of fossil
                   fuels on the grid to stay inside a carbon budget at all times.
@@ -608,46 +610,22 @@ export class GawInfoBar extends LitElement {
         cursor: pointer;
       }
 
-      .popover__content {
-        opacity: 0;
-        visibility: hidden;
-        position: absolute;
-        /* left: -150px; */
-        right: 5em;
-        transform: translate(0, 10px);
-        background-color: #fff;
-        border: 1px solid #ccc;
-        /* padding: 1.5rem; */
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-        width: auto;
-      }
-      /* .popover__content:before {
-        position: absolute;
-        z-index: -1;
-        content: "";
-        right: calc(50% - 10px);
-        top: -8px;
-        border-style: solid;
-        border-width: 0 10px 10px 10px;
-        border-color: transparent transparent #bfbfbf transparent;
-        transition-duration: 0.3s;
-        transition-property: transform;
-      } */
-      .popover__content {
-        transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+      .popover__wrapper button {
+        anchor-name: --infoAnchor;
       }
 
-      .popover__wrapper:hover + .popover__content,
-      .popover__wrapper:focus + .popover__content,
-      .popover__wrapper:focus-within + .popover__content,
-      .popover__wrapper[data-clicked] + .popover__content {
-        z-index: 10;
-        opacity: 1;
-        visibility: visible;
-        transform: translate(0, 0);
+      .popover__content {
+        width: 100%;
+        max-width: 40ch;
+        top: anchor(bottom);
+        justify-self: anchor-center;
+        margin-top: 15px;
       }
+
       .popover__message {
+        padding-inline: 1em;
         text-align: center;
+        line-height: 1.65;
       }
 
       .controls .divider {
