@@ -674,8 +674,8 @@ export class GawInfoBar extends LitElement {
           justify-content: flex-end;
         }
 
-        .controls .divider:after {
-          display: none;
+        .holder {
+          border: 1px solid #b8bcb5;
         }
       }
     `;
