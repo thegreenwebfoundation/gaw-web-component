@@ -349,7 +349,7 @@ export class GawInfoBar extends LitElement {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        border: 1px solid #b8bcb5;
+        border: 0.5px solid #b8bcb5;
       }
 
       .holder > * {
