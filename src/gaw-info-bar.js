@@ -44,7 +44,7 @@ export class GawInfoBar extends LitElement {
             <div class="split-content">
               <p>${this.gridLevelText}</p>
 
-              <div class="popover-wrapper" @click="${this._togglePopoverClick}">
+              <div class="popover-wrapper">
                 <button popovertarget="mypopover">
                   <svg
                     class="icon size-6"
@@ -71,6 +71,9 @@ export class GawInfoBar extends LitElement {
                 </p>
               </div>
             </div>
+            <button id="expander" @click=${this._toggleExpandClick}>
+              <span class="caret"></span>
+            </button>
           </div>
 
           <div class="holder location">
@@ -250,17 +253,12 @@ export class GawInfoBar extends LitElement {
     return null;
   }
 
-  /**
-   * Toggle the data-clicked attribute on the popover wrapper element
-   * @param {Event} event - The click event
-   * @private
-   */
-  _togglePopoverClick(event) {
+  _toggleExpandClick(event) {
     const element = event.currentTarget;
-    if (element.hasAttribute("data-clicked")) {
-      element.removeAttribute("data-clicked");
+    if (element.hasAttribute("data-expand")) {
+      element.removeAttribute("data-expand");
     } else {
-      element.setAttribute("data-clicked", "");
+      element.setAttribute("data-expand", "");
     }
   }
 
@@ -320,8 +318,65 @@ export class GawInfoBar extends LitElement {
         container-type: inline-size;
         display: grid;
         grid-template-areas:
-          "status location"
-          "controls controls";
+          "location status"
+          ". controls";
+      }
+
+      .inner-container:has(input[checked]) .controls {
+        display: none;
+      }
+
+      .inner-container:has([data-expand]):has(input[checked]) .controls {
+        display: flex;
+      }
+
+      #expander {
+        margin-inline-start: auto;
+      }
+
+      .caret {
+        transform: translateY(-50%);
+        display: inline-block;
+        height: 10px;
+        position: relative;
+        transition: 0.4s ease;
+        transform: rotate(0);
+        width: 13px;
+      }
+
+      .caret:after,
+      .caret:before {
+        background-color: transparent;
+        border-bottom: 9px solid #444;
+        box-sizing: content-box;
+        content: "";
+        display: inline-block;
+        height: 8px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: 0.4s ease;
+        width: 1px;
+      }
+
+      .caret:before {
+        transform: rotate(-135deg);
+      }
+      .caret:after {
+        transform: rotate(135deg);
+      }
+
+      .inner-container:has([data-expand]) .caret {
+        transform: rotate(0);
+        transform: translate(0, -6px);
+      }
+
+      .inner-container:has([data-expand]) .caret:before {
+        transform: rotate(-90deg);
+      }
+
+      .inner-container:has([data-expand]) .caret:after {
+        transform: rotate(90deg);
       }
 
       .controls {
@@ -628,6 +683,7 @@ export class GawInfoBar extends LitElement {
 
       .controls > .holder {
         flex-wrap: wrap;
+        width: 100%;
       }
 
       @container wrapper (width < 40em) {
@@ -637,6 +693,14 @@ export class GawInfoBar extends LitElement {
             "location"
             "controls";
         }
+
+        .inner-container:has(input[checked]) .location {
+          display: none;
+        }
+
+        .inner-container:has([data-expand]):has(input[checked]) .location {
+          display: flex;
+        }
       }
 
       @container wrapper (width < 30.625em) {
@@ -645,7 +709,7 @@ export class GawInfoBar extends LitElement {
         }
       }
 
-      @container wrapper (width > 63.75em) {
+      @container wrapper (width > 60em) {
         .inner-container {
           display: flex;
           align-items: center;
@@ -666,8 +730,21 @@ export class GawInfoBar extends LitElement {
           justify-content: flex-end;
         }
 
+        .controls .holder {
+          width: auto;
+        }
+
+        .inner-container:has(input[checked]) .location,
+        .inner-container:has(input[checked]) .controls {
+          display: flex;
+        }
+
         .holder {
           border: 1px solid #b8bcb5;
+        }
+
+        #expander {
+          display: none;
         }
       }
     `;
