@@ -604,6 +604,12 @@ export class GawInfoBar extends LitElement {
         .toggle-slider:before {
           transition-duration: 0.1s;
         }
+
+        .caret,
+        .caret:before,
+        .caret:after {
+          transition-duration: 0.1s;
+        }
       }
 
       /* Support for Windows High Contrast Mode */
