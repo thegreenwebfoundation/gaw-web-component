@@ -44,19 +44,15 @@ export class GawInfoBar extends LitElement {
             <div class="split-content">
               <p>${this.gridLevelText}</p>
 
-              <div
-                class="popover__wrapper"
-                @click="${this._togglePopoverClick}"
-              >
+              <div class="popover-wrapper" @click="${this._togglePopoverClick}">
                 <button popovertarget="mypopover">
                   <svg
-                    class="icon popover__title"
+                    class="icon size-6"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="size-6"
                   >
                     <path
                       stroke-linecap="round"
@@ -67,8 +63,8 @@ export class GawInfoBar extends LitElement {
                 </button>
               </div>
 
-              <div class="popover__content" id="mypopover" popover>
-                <p class="popover__message">
+              <div class="popover-content" id="mypopover" popover>
+                <p class="popover-message">
                   This site changes its design based on the quantity of fossil
                   fuels on the grid to stay inside a carbon budget at all times.
                   <a href="${this.learnMoreLink}">Learn more</a>
@@ -80,13 +76,12 @@ export class GawInfoBar extends LitElement {
           <div class="holder location">
             <div class="divider">
               <svg
-                class="icon"
+                class="icon size-6"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="size-6"
               >
                 <path
                   stroke-linecap="round"
@@ -107,14 +102,11 @@ export class GawInfoBar extends LitElement {
             <div class="holder">
               <div class="divider" id="gaw-info-bar-auto">
                 <p id="toggle-label-text">Grid-aware mode</p>
-                <label
-                  class="toggle-switch"
-                  for="gaw-info-bar-settings-auto-toggle"
-                >
+                <label class="toggle-switch" for="auto-toggle">
                   <input
                     type="checkbox"
                     ?checked="${this.autoMode}"
-                    id="gaw-info-bar-settings-auto-toggle"
+                    id="auto-toggle"
                     @change="${this._handleAutoToggleChange}"
                     @keydown="${this._handleToggleKeydown}"
                     aria-labelledby="toggle-label-text"
@@ -128,7 +120,7 @@ export class GawInfoBar extends LitElement {
 
               <div id="gaw-info-bar-manual" class="spaced">
                 <button
-                  id="gaw-info-bar-settings-manual-low"
+                  id="gaw-manual-low"
                   ?disabled="${this.autoMode}"
                   @click=${this._handleManualModeChange}
                   ?data-active=${this._checkIsActive("low")}
@@ -136,7 +128,7 @@ export class GawInfoBar extends LitElement {
                   Low
                 </button>
                 <button
-                  id="gaw-info-bar-settings-manual-moderate"
+                  id="gaw-manual-moderate"
                   ?disabled="${this.autoMode}"
                   @click=${this._handleManualModeChange}
                   ?data-active=${this._checkIsActive("moderate")}
@@ -144,7 +136,7 @@ export class GawInfoBar extends LitElement {
                   Moderate
                 </button>
                 <button
-                  id="gaw-info-bar-settings-manual-high"
+                  id="gaw-manual-high"
                   ?disabled="${this.autoMode}"
                   @click=${this._handleManualModeChange}
                   ?data-active=${this._checkIsActive("high")}
@@ -589,15 +581,15 @@ export class GawInfoBar extends LitElement {
         cursor: pointer;
       }
 
-      button#gaw-info-bar-settings-manual-low {
+      button#gaw-manual-low {
         --activeButtonBackgroundColor: #86ca7a;
       }
 
-      button#gaw-info-bar-settings-manual-moderate {
+      button#gaw-manual-moderate {
         --activeButtonBackgroundColor: #eca75d;
       }
 
-      button#gaw-info-bar-settings-manual-high {
+      button#gaw-manual-high {
         --activeButtonBackgroundColor: #e4a08a;
       }
 
@@ -605,16 +597,16 @@ export class GawInfoBar extends LitElement {
         background: var(--activeButtonBackgroundColor);
       }
 
-      .popover__wrapper {
+      .popover-wrapper {
         position: relative;
         cursor: pointer;
       }
 
-      .popover__wrapper button {
+      .popover-wrapper button {
         anchor-name: --infoAnchor;
       }
 
-      .popover__content {
+      .popover-content {
         width: 100%;
         max-width: 40ch;
         top: anchor(bottom);
@@ -622,7 +614,7 @@ export class GawInfoBar extends LitElement {
         margin-top: 15px;
       }
 
-      .popover__message {
+      .popover-message {
         padding-inline: 1em;
         text-align: center;
         line-height: 1.65;
