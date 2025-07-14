@@ -66,7 +66,7 @@ export class GawInfoBar extends LitElement {
               <div class="popover-content" id="mypopover" popover>
                 <p class="popover-message">
                   This site changes its design based on the quantity of fossil
-                  fuels on the grid to stay inside a carbon budget at all times.
+                  fuels on your nearest energy grid.
                   <a href="${this.learnMoreLink}">Learn more</a>
                 </p>
               </div>
