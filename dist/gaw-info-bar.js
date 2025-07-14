@@ -2085,12 +2085,12 @@ class _e extends E {
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 1rem;
+        /* gap: 1rem; */
         /* justify-content: center; */
       }
 
       .split-content > * {
-        padding-inline: 0.25rem;
+        /* padding-inline: 0.25rem; */
         position: relative;
       }
 
@@ -2339,7 +2339,7 @@ class _e extends E {
         flex-wrap: wrap;
       }
 
-      @container wrapper (width < 640px) {
+      @container wrapper (width < 40em) {
         .inner-container {
           grid-template-areas:
             "status"
@@ -2348,13 +2348,13 @@ class _e extends E {
         }
       }
 
-      @container wrapper (width < 490px) {
+      @container wrapper (width < 30.625em) {
         .controls .divider:after {
           display: none;
         }
       }
 
-      @container wrapper (width > 1023px) {
+      @container wrapper (width > 63.75em) {
         .inner-container {
           display: flex;
           align-items: center;
