@@ -159,9 +159,9 @@ export class GawInfoBar extends LitElement {
     try {
       let locationString = location.toString();
       const locationObject = zones[locationString];
-      if (locationObject.shortName) {
+      if (locationObject?.shortName) {
         return locationObject.shortName;
-      } else if (locationObject.zoneName) {
+      } else if (locationObject?.zoneName) {
         return locationObject.zoneName;
       } else {
         return location.toString();
