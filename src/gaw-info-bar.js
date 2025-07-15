@@ -342,12 +342,13 @@ export class GawInfoBar extends LitElement {
         transition: 0.4s ease;
         transform: rotate(0);
         width: 13px;
+        color: currentColor;
       }
 
       .caret:after,
       .caret:before {
         background-color: transparent;
-        border-bottom: 9px solid #444;
+        border-bottom: 9px solid currentColor;
         box-sizing: content-box;
         content: "";
         display: inline-block;
