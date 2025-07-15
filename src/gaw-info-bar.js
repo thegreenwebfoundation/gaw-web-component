@@ -708,6 +708,10 @@ export class GawInfoBar extends LitElement {
         .inner-container:has([data-expand]):has(input[checked]) .location {
           display: flex;
         }
+
+        .inner-container:has(input[checked]) #gaw-info-bar-manual {
+          display: none;
+        }
       }
 
       @container wrapper (width < 30.625em) {
