@@ -330,6 +330,10 @@ export class GawInfoBar extends LitElement {
         display: flex;
       }
 
+      .inner-container:has(input[checked]) #gaw-info-bar-manual {
+        display: none;
+      }
+
       #expander {
         margin-inline-start: auto;
       }
@@ -452,6 +456,10 @@ export class GawInfoBar extends LitElement {
       div.divider:has(input):after {
         height: calc(100% - 1.5rem);
         top: 0.75rem;
+      }
+
+      div.divider:has(input[checked]):after {
+        display: none;
       }
 
       .spaced {
@@ -707,10 +715,6 @@ export class GawInfoBar extends LitElement {
 
         .inner-container:has([data-expand]):has(input[checked]) .location {
           display: flex;
-        }
-
-        .inner-container:has(input[checked]) #gaw-info-bar-manual {
-          display: none;
         }
       }
 
