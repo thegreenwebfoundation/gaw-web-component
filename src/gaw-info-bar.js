@@ -226,7 +226,7 @@ export class GawInfoBar extends LitElement {
   }
 
   _checkIsActive(mode) {
-    return this._getCookie("gaw-manual-view") === mode;
+    return this._getCookieValue("gaw-manual-view") === mode;
   }
 
   /**
@@ -241,7 +241,7 @@ export class GawInfoBar extends LitElement {
       .some((cookie) => cookie.trim().startsWith(`${name}=`));
   }
 
-  _getCookie(name) {
+  _getCookieValue(name) {
     const cookies = document.cookie.split("; ");
     for (let i = 0; i < cookies.length; i++) {
       const cookie = cookies[i];
@@ -270,6 +270,8 @@ export class GawInfoBar extends LitElement {
       this.dataset.ignoreCookieMaxAge || this.ignoreCookieMaxAge;
     this.ignoreCookie = this.dataset.ignoreCookie || this.ignoreCookie;
     this.learnMoreLink = this.dataset.learnMoreLink || this.learnMoreLink;
+    this.autoMode =
+      this._getCookieValue("gaw-user-opt-in") === "false" ? false : true;
 
     try {
       const locationString = this._formatLocation(this.location);
