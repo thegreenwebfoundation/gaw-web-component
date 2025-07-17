@@ -1961,7 +1961,7 @@ class _e extends E {
     ), this._handleAutoToggleChange({ target: e.target }));
   }
   _checkIsActive(e) {
-    return this._getCookie("gaw-manual-view") === e;
+    return this._getCookieValue("gaw-manual-view") === e;
   }
   /**
    * Checks if a cookie exists
@@ -1972,7 +1972,7 @@ class _e extends E {
   _hasCookie(e) {
     return document.cookie.split(";").some((t) => t.trim().startsWith(`${e}=`));
   }
-  _getCookie(e) {
+  _getCookieValue(e) {
     const t = document.cookie.split("; ");
     for (let o = 0; o < t.length; o++) {
       const a = t[o], i = a.indexOf("=");
@@ -1987,7 +1987,7 @@ class _e extends E {
   }
   _init() {
     const e = this.dataset.gawLevel || this.level;
-    this.location = this.dataset.gawLocation || this.location, this.ignoreCookieMaxAge = this.dataset.ignoreCookieMaxAge || this.ignoreCookieMaxAge, this.ignoreCookie = this.dataset.ignoreCookie || this.ignoreCookie, this.learnMoreLink = this.dataset.learnMoreLink || this.learnMoreLink;
+    this.location = this.dataset.gawLocation || this.location, this.ignoreCookieMaxAge = this.dataset.ignoreCookieMaxAge || this.ignoreCookieMaxAge, this.ignoreCookie = this.dataset.ignoreCookie || this.ignoreCookie, this.learnMoreLink = this.dataset.learnMoreLink || this.learnMoreLink, this.autoMode = this._getCookieValue("gaw-user-opt-in") !== "false";
     try {
       const t = this._formatLocation(this.location);
       this.location = t;
