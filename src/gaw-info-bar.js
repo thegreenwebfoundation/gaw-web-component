@@ -185,10 +185,12 @@ export class GawInfoBar extends LitElement {
     if (this.autoMode) {
       document.cookie = `${this.ignoreCookie}=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
       document.cookie = `gaw-manual-view=low; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
+      document.cookie = `gaw-user-opt-in=true; path=/; max-age=${this.ignoreCookieMaxAge}`;
       window.location.reload();
     } else {
       document.cookie = `${this.ignoreCookie}=true; path=/; max-age=${this.ignoreCookieMaxAge}`;
       document.cookie = `gaw-manual-view=low; path=/; max-age=${this.ignoreCookieMaxAge}`;
+      document.cookie = `gaw-user-opt-in=false; path=/; max-age=${this.ignoreCookieMaxAge}`;
       window.location.reload();
     }
   }
