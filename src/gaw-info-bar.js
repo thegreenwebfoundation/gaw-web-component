@@ -43,33 +43,6 @@ export class GawInfoBar extends LitElement {
 
             <div class="split-content">
               <p>${this.gridLevelText}</p>
-
-              <div class="popover-wrapper">
-                <button popovertarget="mypopover">
-                  <svg
-                    class="icon size-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-                    />
-                  </svg>
-                </button>
-              </div>
-
-              <div class="popover-content" id="mypopover" popover>
-                <p class="popover-message">
-                  This site changes its design based on the quantity of fossil
-                  fuels on your nearest energy grid.
-                  <a href="${this.learnMoreLink}">Learn more</a>
-                </p>
-              </div>
             </div>
             <button id="expander" @click=${this._toggleExpandClick}>
               <span class="caret"></span>
@@ -145,7 +118,32 @@ export class GawInfoBar extends LitElement {
                   <span class="toggle-slider" aria-hidden="true"></span>
                   <span class="toggle-label">Auto</span>
                 </label>
+                <div class="popover-wrapper">
+                  <button popovertarget="mypopover">
+                    <svg
+                      class="icon size-6"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
               </div>
+            </div>
+            <div class="popover-content" id="mypopover" popover>
+              <p class="popover-message">
+                This site changes its design based on the quantity of fossil
+                fuels on your nearest energy grid.
+                <a href="${this.learnMoreLink}">Learn more</a>
+              </p>
             </div>
           </div>
         </div>
@@ -705,7 +703,7 @@ export class GawInfoBar extends LitElement {
       }
 
       .controls > .holder {
-        flex-wrap: wrap;
+        flex-wrap: wrap-reverse;
         width: 100%;
       }
 
