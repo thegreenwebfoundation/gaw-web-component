@@ -103,25 +103,7 @@ export class GawInfoBar extends LitElement {
 
           <div id="gaw-info-controls" class="controls">
             <div class="holder">
-              <div class="divider" id="gaw-info-bar-auto">
-                <p id="toggle-label-text">Grid-aware mode</p>
-                <label class="toggle-switch" for="auto-toggle">
-                  <input
-                    type="checkbox"
-                    ?checked="${this.autoMode}"
-                    id="auto-toggle"
-                    @change="${this._handleAutoToggleChange}"
-                    @keydown="${this._handleToggleKeydown}"
-                    aria-labelledby="toggle-label-text"
-                    role="switch"
-                    aria-checked="${this.autoMode ? "true" : "false"}"
-                  />
-                  <span class="toggle-slider" aria-hidden="true"></span>
-                  <span class="toggle-label">Auto</span>
-                </label>
-              </div>
-
-              <div id="gaw-info-bar-manual" class="spaced">
+              <div id="gaw-info-bar-manual" class="spaced divider">
                 <button
                   id="gaw-manual-low"
                   ?disabled="${this.autoMode}"
@@ -146,6 +128,23 @@ export class GawInfoBar extends LitElement {
                 >
                   High
                 </button>
+              </div>
+              <div id="gaw-info-bar-auto">
+                <p id="toggle-label-text">Grid-aware mode</p>
+                <label class="toggle-switch" for="auto-toggle">
+                  <input
+                    type="checkbox"
+                    ?checked="${this.autoMode}"
+                    id="auto-toggle"
+                    @change="${this._handleAutoToggleChange}"
+                    @keydown="${this._handleToggleKeydown}"
+                    aria-labelledby="toggle-label-text"
+                    role="switch"
+                    aria-checked="${this.autoMode ? "true" : "false"}"
+                  />
+                  <span class="toggle-slider" aria-hidden="true"></span>
+                  <span class="toggle-label">Auto</span>
+                </label>
               </div>
             </div>
           </div>
@@ -415,10 +414,15 @@ export class GawInfoBar extends LitElement {
         position: relative;
       }
 
-      div.divider {
+      div.divider,
+      #gaw-info-bar-auto {
         position: relative;
         display: flex;
         align-items: center;
+      }
+
+      #gaw-info-bar-auto {
+        gap: 0.5rem;
       }
 
       div.divider:after {
