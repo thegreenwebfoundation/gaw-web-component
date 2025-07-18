@@ -730,7 +730,7 @@ export class GawInfoBar extends LitElement {
         }
       }
 
-      @container wrapper (width > 60em) {
+      @container wrapper (width > 45em) {
         .inner-container {
           display: flex;
           align-items: center;
