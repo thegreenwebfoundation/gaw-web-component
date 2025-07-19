@@ -679,15 +679,42 @@ export class GawInfoBar extends LitElement {
       }
 
       .popover-wrapper button {
-        anchor-name: --infoAnchor;
       }
 
       .popover-content {
         width: 100%;
         max-width: 40ch;
-        top: anchor(bottom);
-        justify-self: anchor-center;
-        margin-top: 15px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .popover-content::backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      @supports (position-try: most-height flip-block) {
+        .popover-content {
+          width: anchor-size(width);
+          position: fixed; /* Essential for CSS Anchor Positioning */
+          position-anchor: --infoAnchor;
+
+          left: 0;
+          top: 0;
+          transform: translate(0, 0);
+
+          /* Default position (first attempt: below the anchor) */
+          position-area: bottom center;
+          margin-top: 8px;
+          top: anchor(bottom);
+          left: anchor(left);
+          position-try: most-height flip-block;
+        }
+
+        .popover-content::backdrop {
+          background-color: transparent;
+        }
       }
 
       .popover-message {
@@ -705,6 +732,7 @@ export class GawInfoBar extends LitElement {
       .controls > .holder {
         flex-wrap: wrap-reverse;
         width: 100%;
+        anchor-name: --infoAnchor;
       }
 
       @container wrapper (width < 40em) {
