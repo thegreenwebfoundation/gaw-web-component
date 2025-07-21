@@ -21,6 +21,8 @@ export class GawInfoBar extends LitElement {
     this.ignoreCookieMaxAge = "Session";
     this.manualVersion = "low";
     this.learnMoreLink = "#";
+    this.popoverText =
+      "This site changes its design based on the quantity of fossil fuels on your nearest energy grid.";
     this.addEventListener("load", this._init());
   }
 
@@ -140,8 +142,7 @@ export class GawInfoBar extends LitElement {
             </div>
             <div class="popover-content" id="mypopover" popover>
               <p class="popover-message">
-                This site changes its design based on the quantity of fossil
-                fuels on your nearest energy grid.
+                ${this.popoverText}
                 <a href="${this.learnMoreLink}">Learn more</a>
               </p>
             </div>
@@ -268,6 +269,7 @@ export class GawInfoBar extends LitElement {
       this.dataset.ignoreCookieMaxAge || this.ignoreCookieMaxAge;
     this.ignoreCookie = this.dataset.ignoreCookie || this.ignoreCookie;
     this.learnMoreLink = this.dataset.learnMoreLink || this.learnMoreLink;
+    this.popoverText = this.dataset.popoverText || this.popoverText;
     this.autoMode =
       this._getCookieValue("gaw-user-opt-in") === "false" ? false : true;
 

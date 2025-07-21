@@ -3,7 +3,7 @@
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const I = globalThis, G = I.ShadowRoot && (I.ShadyCSS === void 0 || I.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, W = Symbol(), F = /* @__PURE__ */ new WeakMap();
+const x = globalThis, G = x.ShadowRoot && (x.ShadyCSS === void 0 || x.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, W = Symbol(), F = /* @__PURE__ */ new WeakMap();
 let te = class {
   constructor(e, t, o) {
     if (this._$cssResult$ = !0, o !== W) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
@@ -32,7 +32,7 @@ const se = (n) => new te(typeof n == "string" ? n : n + "", void 0, W), le = (n,
 }, he = (n, e) => {
   if (G) n.adoptedStyleSheets = e.map((t) => t instanceof CSSStyleSheet ? t : t.styleSheet);
   else for (const t of e) {
-    const o = document.createElement("style"), a = I.litNonce;
+    const o = document.createElement("style"), a = x.litNonce;
     a !== void 0 && o.setAttribute("nonce", a), o.textContent = t.cssText, n.appendChild(o);
   }
 }, K = G ? (n) => n : (n) => n instanceof CSSStyleSheet ? ((e) => {
@@ -282,8 +282,8 @@ C.elementStyles = [], C.shadowRootOptions = { mode: "open" }, C[b("elementProper
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const $ = globalThis, x = $.trustedTypes, Z = x ? x.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, ae = "$lit$", p = `lit$${Math.random().toFixed(9).slice(2)}$`, ne = "?" + p, ze = `<${ne}>`, f = document, U = () => f.createComment(""), _ = (n) => n === null || typeof n != "object" && typeof n != "function", D = Array.isArray, Se = (n) => D(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", B = `[ 	
-\f\r]`, v = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Y = /-->/g, j = />/g, z = RegExp(`>|${B}(?:([^\\s"'>=/]+)(${B}*=${B}*(?:[^ 	
+const $ = globalThis, I = $.trustedTypes, Z = I ? I.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, ae = "$lit$", p = `lit$${Math.random().toFixed(9).slice(2)}$`, ne = "?" + p, ze = `<${ne}>`, f = document, U = () => f.createComment(""), _ = (n) => n === null || typeof n != "object" && typeof n != "function", D = Array.isArray, Se = (n) => D(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", B = `[ 	
+\f\r]`, w = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Y = /-->/g, j = />/g, z = RegExp(`>|${B}(?:([^\\s"'>=/]+)(${B}*=${B}*(?:[^ 	
 \f\r"'\`<>=]|("|')|))|$)`, "g"), q = /'/g, Q = /"/g, ie = /^(?:script|style|textarea|title)$/i, Ae = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), fe = Ae(1), y = Symbol.for("lit-noChange"), d = Symbol.for("lit-nothing"), X = /* @__PURE__ */ new WeakMap(), S = f.createTreeWalker(f, 129);
 function re(n, e) {
   if (!D(n) || !n.hasOwnProperty("raw")) throw Error("invalid template strings array");
@@ -291,13 +291,13 @@ function re(n, e) {
 }
 const Ce = (n, e) => {
   const t = n.length - 1, o = [];
-  let a, i = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", r = v;
+  let a, i = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", r = w;
   for (let l = 0; l < t; l++) {
     const s = n[l];
     let c, m, h = -1, N = 0;
-    for (; N < s.length && (r.lastIndex = N, m = r.exec(s), m !== null); ) N = r.lastIndex, r === v ? m[1] === "!--" ? r = Y : m[1] !== void 0 ? r = j : m[2] !== void 0 ? (ie.test(m[2]) && (a = RegExp("</" + m[2], "g")), r = z) : m[3] !== void 0 && (r = z) : r === z ? m[0] === ">" ? (r = a ?? v, h = -1) : m[1] === void 0 ? h = -2 : (h = r.lastIndex - m[2].length, c = m[1], r = m[3] === void 0 ? z : m[3] === '"' ? Q : q) : r === Q || r === q ? r = z : r === Y || r === j ? r = v : (r = z, a = void 0);
+    for (; N < s.length && (r.lastIndex = N, m = r.exec(s), m !== null); ) N = r.lastIndex, r === w ? m[1] === "!--" ? r = Y : m[1] !== void 0 ? r = j : m[2] !== void 0 ? (ie.test(m[2]) && (a = RegExp("</" + m[2], "g")), r = z) : m[3] !== void 0 && (r = z) : r === z ? m[0] === ">" ? (r = a ?? w, h = -1) : m[1] === void 0 ? h = -2 : (h = r.lastIndex - m[2].length, c = m[1], r = m[3] === void 0 ? z : m[3] === '"' ? Q : q) : r === Q || r === q ? r = z : r === Y || r === j ? r = w : (r = z, a = void 0);
     const u = r === z && n[l + 1].startsWith("/>") ? " " : "";
-    i += r === v ? s + ze : h >= 0 ? (o.push(c), s.slice(0, h) + ae + s.slice(h) + p + u) : s + p + (h === -2 ? l : u);
+    i += r === w ? s + ze : h >= 0 ? (o.push(c), s.slice(0, h) + ae + s.slice(h) + p + u) : s + p + (h === -2 ? l : u);
   }
   return [re(n, i + (n[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), o];
 };
@@ -315,12 +315,12 @@ class k {
       if (a.nodeType === 1) {
         if (a.hasAttributes()) for (const h of a.getAttributeNames()) if (h.endsWith(ae)) {
           const N = m[r++], u = a.getAttribute(h).split(p), P = /([.?@])?(.*)/.exec(N);
-          s.push({ type: 1, index: i, name: P[2], strings: u, ctor: P[1] === "." ? we : P[1] === "?" ? ve : P[1] === "@" ? be : T }), a.removeAttribute(h);
+          s.push({ type: 1, index: i, name: P[2], strings: u, ctor: P[1] === "." ? ve : P[1] === "?" ? we : P[1] === "@" ? be : T }), a.removeAttribute(h);
         } else h.startsWith(p) && (s.push({ type: 6, index: i }), a.removeAttribute(h));
         if (ie.test(a.tagName)) {
           const h = a.textContent.split(p), N = h.length - 1;
           if (N > 0) {
-            a.textContent = x ? x.emptyScript : "";
+            a.textContent = I ? I.emptyScript : "";
             for (let u = 0; u < N; u++) a.append(h[u], U()), S.nextNode(), s.push({ type: 2, index: ++i });
             a.append(h[N], U());
           }
@@ -338,12 +338,12 @@ class k {
     return o.innerHTML = e, o;
   }
 }
-function w(n, e, t = n, o) {
+function v(n, e, t = n, o) {
   var r, l;
   if (e === y) return e;
   let a = o !== void 0 ? (r = t._$Co) == null ? void 0 : r[o] : t._$Cl;
   const i = _(e) ? void 0 : e._$litDirective$;
-  return (a == null ? void 0 : a.constructor) !== i && ((l = a == null ? void 0 : a._$AO) == null || l.call(a, !1), i === void 0 ? a = void 0 : (a = new i(n), a._$AT(n, t, o)), o !== void 0 ? (t._$Co ?? (t._$Co = []))[o] = a : t._$Cl = a), a !== void 0 && (e = w(n, a._$AS(n, e.values), a, o)), e;
+  return (a == null ? void 0 : a.constructor) !== i && ((l = a == null ? void 0 : a._$AO) == null || l.call(a, !1), i === void 0 ? a = void 0 : (a = new i(n), a._$AT(n, t, o)), o !== void 0 ? (t._$Co ?? (t._$Co = []))[o] = a : t._$Cl = a), a !== void 0 && (e = v(n, a._$AS(n, e.values), a, o)), e;
 }
 class ye {
   constructor(e, t) {
@@ -393,7 +393,7 @@ class M {
     return this._$AB;
   }
   _$AI(e, t = this) {
-    e = w(this, e, t), _(e) ? e === d || e == null || e === "" ? (this._$AH !== d && this._$AR(), this._$AH = d) : e !== this._$AH && e !== y && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : Se(e) ? this.k(e) : this._(e);
+    e = v(this, e, t), _(e) ? e === d || e == null || e === "" ? (this._$AH !== d && this._$AR(), this._$AH = d) : e !== this._$AH && e !== y && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : Se(e) ? this.k(e) : this._(e);
   }
   O(e) {
     return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -449,11 +449,11 @@ class T {
   _$AI(e, t = this, o, a) {
     const i = this.strings;
     let r = !1;
-    if (i === void 0) e = w(this, e, t, 0), r = !_(e) || e !== this._$AH && e !== y, r && (this._$AH = e);
+    if (i === void 0) e = v(this, e, t, 0), r = !_(e) || e !== this._$AH && e !== y, r && (this._$AH = e);
     else {
       const l = e;
       let s, c;
-      for (e = i[0], s = 0; s < i.length - 1; s++) c = w(this, l[o + s], t, s), c === y && (c = this._$AH[s]), r || (r = !_(c) || c !== this._$AH[s]), c === d ? e = d : e !== d && (e += (c ?? "") + i[s + 1]), this._$AH[s] = c;
+      for (e = i[0], s = 0; s < i.length - 1; s++) c = v(this, l[o + s], t, s), c === y && (c = this._$AH[s]), r || (r = !_(c) || c !== this._$AH[s]), c === d ? e = d : e !== d && (e += (c ?? "") + i[s + 1]), this._$AH[s] = c;
     }
     r && !a && this.j(e);
   }
@@ -461,7 +461,7 @@ class T {
     e === d ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
   }
 }
-class we extends T {
+class ve extends T {
   constructor() {
     super(...arguments), this.type = 3;
   }
@@ -469,7 +469,7 @@ class we extends T {
     this.element[this.name] = e === d ? void 0 : e;
   }
 }
-class ve extends T {
+class we extends T {
   constructor() {
     super(...arguments), this.type = 4;
   }
@@ -482,7 +482,7 @@ class be extends T {
     super(e, t, o, a, i), this.type = 5;
   }
   _$AI(e, t = this) {
-    if ((e = w(this, e, t, 0) ?? d) === y) return;
+    if ((e = v(this, e, t, 0) ?? d) === y) return;
     const o = this._$AH, a = e === d && o !== d || e.capture !== o.capture || e.once !== o.once || e.passive !== o.passive, i = e !== d && (o === d || a);
     a && this.element.removeEventListener(this.name, this, o), i && this.element.addEventListener(this.name, this, e), this._$AH = e;
   }
@@ -499,7 +499,7 @@ class $e {
     return this._$AM._$AU;
   }
   _$AI(e) {
-    w(this, e);
+    v(this, e);
   }
 }
 const R = $.litHtmlPolyfillSupport;
@@ -1792,7 +1792,7 @@ class _e extends E {
     };
   }
   constructor() {
-    super(), this.location = "Location unknown", this.circleFill = "#B0AA9C", this.autoMode = !0, this.gridLevelText = "Your local grid: Data unavailable", this.ignoreCookie = "gaw-ignore", this.ignoreCookieMaxAge = "Session", this.manualVersion = "low", this.learnMoreLink = "#", this.addEventListener("load", this._init());
+    super(), this.location = "Location unknown", this.circleFill = "#B0AA9C", this.autoMode = !0, this.gridLevelText = "Your local grid: Data unavailable", this.ignoreCookie = "gaw-ignore", this.ignoreCookieMaxAge = "Session", this.manualVersion = "low", this.learnMoreLink = "#", this.popoverText = "This site changes its design based on the quantity of fossil fuels on your nearest energy grid.", this.addEventListener("load", this._init());
   }
   render() {
     return fe`
@@ -1910,8 +1910,7 @@ class _e extends E {
             </div>
             <div class="popover-content" id="mypopover" popover>
               <p class="popover-message">
-                This site changes its design based on the quantity of fossil
-                fuels on your nearest energy grid.
+                ${this.popoverText}
                 <a href="${this.learnMoreLink}">Learn more</a>
               </p>
             </div>
@@ -1985,7 +1984,7 @@ class _e extends E {
   }
   _init() {
     const e = this.dataset.gawLevel || this.level;
-    this.location = this.dataset.gawLocation || this.location, this.ignoreCookieMaxAge = this.dataset.ignoreCookieMaxAge || this.ignoreCookieMaxAge, this.ignoreCookie = this.dataset.ignoreCookie || this.ignoreCookie, this.learnMoreLink = this.dataset.learnMoreLink || this.learnMoreLink, this.autoMode = this._getCookieValue("gaw-user-opt-in") !== "false";
+    this.location = this.dataset.gawLocation || this.location, this.ignoreCookieMaxAge = this.dataset.ignoreCookieMaxAge || this.ignoreCookieMaxAge, this.ignoreCookie = this.dataset.ignoreCookie || this.ignoreCookie, this.learnMoreLink = this.dataset.learnMoreLink || this.learnMoreLink, this.popoverText = this.dataset.popoverText || this.popoverText, this.autoMode = this._getCookieValue("gaw-user-opt-in") !== "false";
     try {
       const t = this._formatLocation(this.location);
       this.location = t;
