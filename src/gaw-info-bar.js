@@ -173,14 +173,14 @@ export class GawInfoBar extends LitElement {
 
     if (this.autoMode) {
       document.cookie = `${this.ignoreCookie}=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-      document.cookie = `gaw-manual-view; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
+      this.views.forEach((view) => {
+        document.cookie = `gaw-manual-view=${view}; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      });
       document.cookie = `gaw-user-opt-in=true; path=/; max-age=${this.ignoreCookieMaxAge}`;
       window.location.reload();
     } else {
       document.cookie = `${this.ignoreCookie}=true; path=/; max-age=${this.ignoreCookieMaxAge}`;
-      if (!this._hasCookie("gaw-manual-view")) {
-        document.cookie = `gaw-manual-view=${this.defaultView}; path=/; max-age=${this.ignoreCookieMaxAge}`;
-      }
+      document.cookie = `gaw-manual-view=${this.defaultView}; path=/; max-age=${this.ignoreCookieMaxAge}`;
       document.cookie = `gaw-user-opt-in=false; path=/; max-age=${this.ignoreCookieMaxAge}`;
       window.location.reload();
     }

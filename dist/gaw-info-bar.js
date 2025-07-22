@@ -1923,7 +1923,9 @@ class _e extends E {
    * @private
    */
   _handleAutoToggleChange(e) {
-    this.autoMode = e.target.checked, e.target.setAttribute("aria-checked", this.autoMode ? "true" : "false"), this.autoMode ? (document.cookie = `${this.ignoreCookie}=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`, document.cookie = "gaw-manual-view; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;", document.cookie = `gaw-user-opt-in=true; path=/; max-age=${this.ignoreCookieMaxAge}`, window.location.reload()) : (document.cookie = `${this.ignoreCookie}=true; path=/; max-age=${this.ignoreCookieMaxAge}`, this._hasCookie("gaw-manual-view") || (document.cookie = `gaw-manual-view=${this.defaultView}; path=/; max-age=${this.ignoreCookieMaxAge}`), document.cookie = `gaw-user-opt-in=false; path=/; max-age=${this.ignoreCookieMaxAge}`, window.location.reload());
+    this.autoMode = e.target.checked, e.target.setAttribute("aria-checked", this.autoMode ? "true" : "false"), this.autoMode ? (document.cookie = `${this.ignoreCookie}=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`, this.views.forEach((t) => {
+      document.cookie = `gaw-manual-view=${t}; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    }), document.cookie = `gaw-user-opt-in=true; path=/; max-age=${this.ignoreCookieMaxAge}`, window.location.reload()) : (document.cookie = `${this.ignoreCookie}=true; path=/; max-age=${this.ignoreCookieMaxAge}`, document.cookie = `gaw-manual-view=${this.defaultView}; path=/; max-age=${this.ignoreCookieMaxAge}`, document.cookie = `gaw-user-opt-in=false; path=/; max-age=${this.ignoreCookieMaxAge}`, window.location.reload());
   }
   /**
    * Handles changes to the manual mode buttons
