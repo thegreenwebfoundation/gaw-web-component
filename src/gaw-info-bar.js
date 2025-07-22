@@ -84,10 +84,10 @@ export class GawInfoBar extends LitElement {
                 ${this.views.map(
                   (view) => html`
                     <button
-                      id="gaw-manual-${view}"
+                      id="gaw-manual-${view.toLowerCase()}"
                       ?disabled="${this.autoMode}"
                       @click=${this._handleManualModeChange}
-                      ?data-active=${this._checkIsActive(view)}
+                      ?data-active=${this._checkIsActive(view.toLowerCase())}
                     >
                       ${view}
                     </button>
@@ -174,13 +174,13 @@ export class GawInfoBar extends LitElement {
     if (this.autoMode) {
       document.cookie = `${this.ignoreCookie}=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
       this.views.forEach((view) => {
-        document.cookie = `gaw-manual-view=${view}; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        document.cookie = `gaw-manual-view=${view.toLowerCase()}; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
       });
       document.cookie = `gaw-user-opt-in=true; path=/; max-age=${this.ignoreCookieMaxAge}`;
       window.location.reload();
     } else {
       document.cookie = `${this.ignoreCookie}=true; path=/; max-age=${this.ignoreCookieMaxAge}`;
-      document.cookie = `gaw-manual-view=${this.defaultView}; path=/; max-age=${this.ignoreCookieMaxAge}`;
+      document.cookie = `gaw-manual-view=${this.defaultView.toLowerCase()}; path=/; max-age=${this.ignoreCookieMaxAge}`;
       document.cookie = `gaw-user-opt-in=false; path=/; max-age=${this.ignoreCookieMaxAge}`;
       window.location.reload();
     }
