@@ -44,17 +44,29 @@ Add the component to a project manually. To do this:
 Add the component to your HTML and configure it with appropriate data attributes:
 
 ```html
-<gaw-info-bar data-gaw-level="low" data-gaw-location="US"> </gaw-info-bar>
+<gaw-info-bar
+  data-gaw-level="low"
+  data-gaw-location="US"
+  data-learn-more-link="https://example.com/grid-aware"
+  data-popover-text="Custom information about grid-aware design"
+  data-views="default, low, moderate, high"
+  data-default-view="default"
+>
+</gaw-info-bar>
 ```
 
 ### Attributes
 
-| Attribute                    | Description                                      | Values                                                 | Default                                   |
-| ---------------------------- | ------------------------------------------------ | ------------------------------------------------------ | ----------------------------------------- |
-| `data-gaw-level`             | Current carbon intensity level                   | `"low"`, `"moderate"`, `"high"`                        | `undefined` (shows as "Data unavailable") |
-| `data-gaw-location`          | Location code                                    | Alpha-2 country code or valid Electricity Maps Zone ID | `undefined` (shows as "Location unknown") |
-| `data-ignore-cookie`         | Name of the cookie used to store user preference | Any valid cookie name                                  | `"gaw-ignore"`                            |
-| `data-ignore-cookie-max-age` | Max age for the ignore cookie                    | Valid cookie max-age or "Session"                      | `"Session"`                               |
+| Attribute                    | Description                                           | Values                                                 | Default                                   |
+| ---------------------------- | ----------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------- |
+| `data-gaw-level`             | Current carbon intensity level                        | `"low"`, `"moderate"`, `"high"`                        | `undefined` (shows as "Data unavailable") |
+| `data-gaw-location`          | Location code                                         | Alpha-2 country code or valid Electricity Maps Zone ID | `undefined` (shows as "Location unknown") |
+| `data-ignore-cookie`         | Name of the cookie used to store user preference      | Any valid cookie name                                  | `"gaw-ignore"`                            |
+| `data-ignore-cookie-max-age` | Max age for the ignore cookie                         | Valid cookie max-age or "Session"                      | `"Session"`                               |
+| `data-learn-more-link`       | URL for the "Learn more" link in the info popover     | Any valid URL                                          | `"#"`                                     |
+| `data-popover-text`          | Custom text to display in the info popover            | Any string                                             | Default explanatory text                  |
+| `data-views`                 | Comma-separated list of design modes                  | String of comma-separated values                       | `"low,moderate,high"`                     |
+| `data-default-view`          | Default design mode when user switches to manual mode | One of the values from `data-views`                    | `"low"`                                   |
 
 ## Grid Intensity Levels
 
@@ -108,12 +120,17 @@ The component provides users with two types of controls:
 
 1. **Auto/Manual Toggle**: Allows users to switch between automatic grid-aware design (based on actual grid intensity) and manual selection.
 
-2. **Manual Mode Buttons**: When auto mode is disabled, users can select between low, moderate, and high grid intensity design modes.
+2. **Manual Mode Buttons**: When auto mode is disabled, users can select between design modes specified in the `data-views` attribute. By default, these are low, moderate, and high grid intensity design modes.
+
+3. **Information Popover**: An information button that displays a popover with explanatory text about the grid-aware design and a "Learn more" link.
 
 These settings are stored in cookies to persist user preferences across page loads:
 
 - `gaw-ignore`: Stores whether the user has opted out of automatic grid-aware design
+- `gaw-user-opt-in`: Stores the user's preference for auto/manual mode
 - `gaw-manual-view`: Stores the user's manually selected grid intensity level
+
+The component also supports an expandable design that shows/hides additional controls when the user clicks on the expand button.
 
 ## Browser Support
 
