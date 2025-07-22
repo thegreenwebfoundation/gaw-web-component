@@ -21,6 +21,8 @@ export class GawInfoBar extends LitElement {
     this.ignoreCookieMaxAge = "Session";
     this.manualVersion = "low";
     this.learnMoreLink = "#";
+    this.defaultView = "low";
+    this.views = ["low", "moderate", "high"];
     this.popoverText =
       "This site changes its design based on the quantity of fossil fuels on your nearest energy grid.";
     this.addEventListener("load", this._init());
@@ -79,30 +81,18 @@ export class GawInfoBar extends LitElement {
           <div id="gaw-info-controls" class="controls">
             <div class="holder">
               <div id="gaw-info-bar-manual" class="spaced divider">
-                <button
-                  id="gaw-manual-low"
-                  ?disabled="${this.autoMode}"
-                  @click=${this._handleManualModeChange}
-                  ?data-active=${this._checkIsActive("low")}
-                >
-                  Low
-                </button>
-                <button
-                  id="gaw-manual-moderate"
-                  ?disabled="${this.autoMode}"
-                  @click=${this._handleManualModeChange}
-                  ?data-active=${this._checkIsActive("moderate")}
-                >
-                  Moderate
-                </button>
-                <button
-                  id="gaw-manual-high"
-                  ?disabled="${this.autoMode}"
-                  @click=${this._handleManualModeChange}
-                  ?data-active=${this._checkIsActive("high")}
-                >
-                  High
-                </button>
+                ${this.views.map(
+                  (view) => html`
+                    <button
+                      id="gaw-manual-${view}"
+                      ?disabled="${this.autoMode}"
+                      @click=${this._handleManualModeChange}
+                      ?data-active=${this._checkIsActive(view)}
+                    >
+                      ${view}
+                    </button>
+                  `,
+                )}
               </div>
               <div id="gaw-info-bar-auto">
                 <p id="toggle-label-text">Grid-aware mode</p>
@@ -183,12 +173,14 @@ export class GawInfoBar extends LitElement {
 
     if (this.autoMode) {
       document.cookie = `${this.ignoreCookie}=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-      document.cookie = `gaw-manual-view=low; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
+      document.cookie = `gaw-manual-view; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
       document.cookie = `gaw-user-opt-in=true; path=/; max-age=${this.ignoreCookieMaxAge}`;
       window.location.reload();
     } else {
       document.cookie = `${this.ignoreCookie}=true; path=/; max-age=${this.ignoreCookieMaxAge}`;
-      document.cookie = `gaw-manual-view=low; path=/; max-age=${this.ignoreCookieMaxAge}`;
+      if (!this._hasCookie("gaw-manual-view")) {
+        document.cookie = `gaw-manual-view=${this.defaultView}; path=/; max-age=${this.ignoreCookieMaxAge}`;
+      }
       document.cookie = `gaw-user-opt-in=false; path=/; max-age=${this.ignoreCookieMaxAge}`;
       window.location.reload();
     }
@@ -272,6 +264,9 @@ export class GawInfoBar extends LitElement {
     this.popoverText = this.dataset.popoverText || this.popoverText;
     this.autoMode =
       this._getCookieValue("gaw-user-opt-in") === "false" ? false : true;
+    this.defaultView = this.dataset.defaultView || this.defaultView;
+    this.views =
+      this.dataset.views?.split(",").map((view) => view.trim()) || this.views;
 
     try {
       const locationString = this._formatLocation(this.location);
@@ -669,6 +664,12 @@ export class GawInfoBar extends LitElement {
 
       button#gaw-manual-high {
         --activeButtonBackgroundColor: #e4a08a;
+      }
+
+      button:not(#gaw-manual-low):not(#gaw-manual-moderate):not(
+          #gaw-manual-high
+        ):not(:disabled)[data-active] {
+        border: 1px solid currentColor;
       }
 
       button:not(:disabled)[data-active] {
