@@ -224,7 +224,7 @@ export class GawInfoBar extends LitElement {
     }
 
     if (!this._hasCookie("gaw-manual-view")) {
-      const isDefaultView = this.defaultView === mode;
+      const isDefaultView = this.defaultView.toLowerCase() === mode;
       return isDefaultView;
     }
 
