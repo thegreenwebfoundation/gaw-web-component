@@ -3,16 +3,16 @@
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const x = globalThis, G = x.ShadowRoot && (x.ShadyCSS === void 0 || x.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, W = Symbol(), F = /* @__PURE__ */ new WeakMap();
+const x = globalThis, D = x.ShadowRoot && (x.ShadyCSS === void 0 || x.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, G = Symbol(), F = /* @__PURE__ */ new WeakMap();
 let oe = class {
   constructor(e, t, o) {
-    if (this._$cssResult$ = !0, o !== W) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
+    if (this._$cssResult$ = !0, o !== G) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
     this.cssText = e, this.t = t;
   }
   get styleSheet() {
     let e = this.o;
     const t = this.t;
-    if (G && e === void 0) {
+    if (D && e === void 0) {
       const o = t !== void 0 && t.length === 1;
       o && (e = F.get(t)), e === void 0 && ((this.o = e = new CSSStyleSheet()).replaceSync(this.cssText), o && F.set(t, e));
     }
@@ -22,20 +22,20 @@ let oe = class {
     return this.cssText;
   }
 };
-const le = (n) => new oe(typeof n == "string" ? n : n + "", void 0, W), he = (n, ...e) => {
+const le = (n) => new oe(typeof n == "string" ? n : n + "", void 0, G), he = (n, ...e) => {
   const t = n.length === 1 ? n[0] : e.reduce((o, a, i) => o + ((r) => {
     if (r._$cssResult$ === !0) return r.cssText;
     if (typeof r == "number") return r;
     throw Error("Value passed to 'css' function must be a 'css' function result: " + r + ". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.");
   })(a) + n[i + 1], n[0]);
-  return new oe(t, n, W);
+  return new oe(t, n, G);
 }, ce = (n, e) => {
-  if (G) n.adoptedStyleSheets = e.map((t) => t instanceof CSSStyleSheet ? t : t.styleSheet);
+  if (D) n.adoptedStyleSheets = e.map((t) => t instanceof CSSStyleSheet ? t : t.styleSheet);
   else for (const t of e) {
     const o = document.createElement("style"), a = x.litNonce;
     a !== void 0 && o.setAttribute("nonce", a), o.textContent = t.cssText, n.appendChild(o);
   }
-}, K = G ? (n) => n : (n) => n instanceof CSSStyleSheet ? ((e) => {
+}, K = D ? (n) => n : (n) => n instanceof CSSStyleSheet ? ((e) => {
   let t = "";
   for (const o of e.cssRules) t += o.cssText;
   return le(t);
@@ -282,11 +282,11 @@ C.elementStyles = [], C.shadowRootOptions = { mode: "open" }, C[b("elementProper
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const $ = globalThis, I = $.trustedTypes, Z = I ? I.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, ne = "$lit$", p = `lit$${Math.random().toFixed(9).slice(2)}$`, ie = "?" + p, Se = `<${ie}>`, f = document, U = () => f.createComment(""), _ = (n) => n === null || typeof n != "object" && typeof n != "function", D = Array.isArray, Ae = (n) => D(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", B = `[ 	
+const $ = globalThis, I = $.trustedTypes, Z = I ? I.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, ne = "$lit$", p = `lit$${Math.random().toFixed(9).slice(2)}$`, ie = "?" + p, Se = `<${ie}>`, f = document, U = () => f.createComment(""), _ = (n) => n === null || typeof n != "object" && typeof n != "function", W = Array.isArray, Ae = (n) => W(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", B = `[ 	
 \f\r]`, v = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Y = /-->/g, j = />/g, z = RegExp(`>|${B}(?:([^\\s"'>=/]+)(${B}*=${B}*(?:[^ 	
 \f\r"'\`<>=]|("|')|))|$)`, "g"), q = /'/g, Q = /"/g, re = /^(?:script|style|textarea|title)$/i, fe = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), X = fe(1), w = Symbol.for("lit-noChange"), d = Symbol.for("lit-nothing"), ee = /* @__PURE__ */ new WeakMap(), S = f.createTreeWalker(f, 129);
 function se(n, e) {
-  if (!D(n) || !n.hasOwnProperty("raw")) throw Error("invalid template strings array");
+  if (!W(n) || !n.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return Z !== void 0 ? Z.createHTML(e) : e;
 }
 const Ce = (n, e) => {
@@ -418,7 +418,7 @@ class M {
     return t === void 0 && ee.set(e.strings, t = new k(e)), t;
   }
   k(e) {
-    D(this._$AH) || (this._$AH = [], this._$AR());
+    W(this._$AH) || (this._$AH = [], this._$AR());
     const t = this._$AH;
     let o, a = 0;
     for (const i of e) a === t.length ? t.push(o = new M(this.O(U()), this.O(U()), this, this.options)) : o = t[a], o._$AI(i), a++;
@@ -1948,7 +1948,7 @@ class _e extends E {
     ), this._handleAutoToggleChange({ target: e.target }));
   }
   _checkIsActive(e) {
-    return this._getCookieValue("gaw-manual-view") === e;
+    return this._getCookieValue("gaw-manual-view") === e ? !0 : this._hasCookie("gaw-manual-view") ? !1 : this.defaultView === e;
   }
   /**
    * Checks if a cookie exists
@@ -2088,7 +2088,7 @@ class _e extends E {
         position: relative;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        column-gap: 0.5rem;
         border: 0.5px solid #b8bcb5;
       }
 
@@ -2442,6 +2442,11 @@ class _e extends E {
 
         .inner-container:has([data-expand]):has(input[checked]) .location {
           display: flex;
+        }
+
+        #gaw-info-bar-manual
+          button:first-child:not(:disabled):not([data-active]) {
+          padding-inline-start: 0;
         }
       }
 
