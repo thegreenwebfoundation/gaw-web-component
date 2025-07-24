@@ -1948,7 +1948,7 @@ class _e extends E {
     ), this._handleAutoToggleChange({ target: e.target }));
   }
   _checkIsActive(e) {
-    return this._getCookieValue("gaw-manual-view") === e ? !0 : this._hasCookie("gaw-manual-view") ? !1 : this.defaultView === e;
+    return this._getCookieValue("gaw-manual-view") === e ? !0 : this._hasCookie("gaw-manual-view") ? !1 : this.defaultView.toLowerCase() === e;
   }
   /**
    * Checks if a cookie exists
