@@ -398,7 +398,7 @@ export class GawInfoBar extends LitElement {
         position: relative;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        column-gap: 0.5rem;
         border: 0.5px solid #b8bcb5;
       }
 
@@ -752,6 +752,11 @@ export class GawInfoBar extends LitElement {
 
         .inner-container:has([data-expand]):has(input[checked]) .location {
           display: flex;
+        }
+
+        #gaw-info-bar-manual
+          button:first-child:not(:disabled):not([data-active]) {
+          padding-inline-start: 0;
         }
       }
 
