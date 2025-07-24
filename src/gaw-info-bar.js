@@ -217,7 +217,18 @@ export class GawInfoBar extends LitElement {
   }
 
   _checkIsActive(mode) {
-    return this._getCookieValue("gaw-manual-view") === mode;
+    const active = this._getCookieValue("gaw-manual-view") === mode;
+
+    if (active) {
+      return true;
+    }
+
+    if (!this._hasCookie("gaw-manual-view")) {
+      const isDefaultView = this.defaultView === mode;
+      return isDefaultView;
+    }
+
+    return false;
   }
 
   /**
