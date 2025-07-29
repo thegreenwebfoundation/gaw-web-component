@@ -62,7 +62,7 @@ Add the component to your HTML and configure it with appropriate data attributes
 | `data-gaw-level`             | Current carbon intensity level                        | `"low"`, `"moderate"`, `"high"`                        | `undefined` (shows as "Data unavailable") |
 | `data-gaw-location`          | Location code                                         | Alpha-2 country code or valid Electricity Maps Zone ID | `undefined` (shows as "Location unknown") |
 | `data-ignore-cookie`         | Name of the cookie used to store user preference      | Any valid cookie name                                  | `"gaw-ignore"`                            |
-| `data-ignore-cookie-max-age` | Max age for the ignore cookie                         | Valid cookie max-age or "Session"                      | `"Session"`                               |
+| `data-ignore-cookie-max-age` | Max age for the ignore cookie                         | Valid cookie max-age in milliseconds                   | `"84600"`                                 |
 | `data-learn-more-link`       | URL for the "Learn more" link in the info popover     | Any valid URL                                          | `"#"`                                     |
 | `data-popover-text`          | Custom text to display in the info popover            | Any string                                             | Default explanatory text                  |
 | `data-views`                 | Comma-separated list of design modes                  | String of comma-separated values                       | `"low,moderate,high"`                     |
