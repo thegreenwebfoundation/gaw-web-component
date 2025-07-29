@@ -1792,7 +1792,7 @@ class _e extends E {
     };
   }
   constructor() {
-    super(), this.location = "Location unknown", this.circleFill = "#B0AA9C", this.autoMode = !0, this.gridLevelText = "Your local grid: Data unavailable", this.ignoreCookie = "gaw-ignore", this.ignoreCookieMaxAge = "Session", this.manualVersion = "low", this.learnMoreLink = "#", this.defaultView = "low", this.views = ["low", "moderate", "high"], this.popoverText = "This site changes its design based on the quantity of fossil fuels on your nearest energy grid.", this.addEventListener("load", this._init());
+    super(), this.location = "Location unknown", this.circleFill = "#B0AA9C", this.autoMode = !0, this.gridLevelText = "Your local grid: Data unavailable", this.ignoreCookie = "gaw-ignore", this.ignoreCookieMaxAge = "86400", this.manualVersion = "low", this.learnMoreLink = "#", this.defaultView = "low", this.views = ["low", "moderate", "high"], this.popoverText = "This site changes its design based on the quantity of fossil fuels on your nearest energy grid.", this.addEventListener("load", this._init());
   }
   render() {
     return X`
