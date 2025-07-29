@@ -176,12 +176,12 @@ export class GawInfoBar extends LitElement {
       this.views.forEach((view) => {
         document.cookie = `gaw-manual-view=${view.toLowerCase()}; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
       });
-      document.cookie = `gaw-user-opt-in=true; path=/; max-age=${this.ignoreCookieMaxAge}`;
+      document.cookie = `gaw-user-opt-in=true; path=/; max-age=${this.ignoreCookieMaxAge}; SameSite=lax`;
       window.location.reload();
     } else {
-      document.cookie = `${this.ignoreCookie}=true; path=/; max-age=${this.ignoreCookieMaxAge}`;
-      document.cookie = `gaw-manual-view=${this.defaultView.toLowerCase()}; path=/; max-age=${this.ignoreCookieMaxAge}`;
-      document.cookie = `gaw-user-opt-in=false; path=/; max-age=${this.ignoreCookieMaxAge}`;
+      document.cookie = `${this.ignoreCookie}=true; path=/; max-age=${this.ignoreCookieMaxAge}; SameSite=lax;`;
+      document.cookie = `gaw-manual-view=${this.defaultView.toLowerCase()}; path=/; max-age=${this.ignoreCookieMaxAge}; SameSite=lax;`;
+      document.cookie = `gaw-user-opt-in=false; path=/; max-age=${this.ignoreCookieMaxAge}; SameSite=lax;`;
       window.location.reload();
     }
   }
@@ -193,7 +193,7 @@ export class GawInfoBar extends LitElement {
    */
   _handleManualModeChange(event) {
     const mode = event.target.id.split("-").pop();
-    document.cookie = `gaw-manual-view=${mode}; path=/; max-age=${this.ignoreCookieMaxAge}`;
+    document.cookie = `gaw-manual-view=${mode}; path=/; max-age=${this.ignoreCookieMaxAge}; SameSite=lax;`;
     window.location.reload();
   }
 
