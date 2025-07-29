@@ -18,7 +18,7 @@ export class GawInfoBar extends LitElement {
     this.autoMode = true;
     this.gridLevelText = "Your local grid: Data unavailable";
     this.ignoreCookie = "gaw-ignore";
-    this.ignoreCookieMaxAge = "84600";
+    this.ignoreCookieMaxAge = "86400";
     this.manualVersion = "low";
     this.learnMoreLink = "#";
     this.defaultView = "low";
