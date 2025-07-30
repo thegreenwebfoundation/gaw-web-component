@@ -258,11 +258,21 @@ export class GawInfoBar extends LitElement {
 
   _toggleExpandClick(event) {
     const element = event.currentTarget;
+
     if (element.hasAttribute("data-expand")) {
       element.removeAttribute("data-expand");
     } else {
       element.setAttribute("data-expand", "");
     }
+
+    /**
+     * Force repaint because of OSX Safari rendering bug
+       Repaint the web component.
+     */
+    const outerContainer = element.parentElement.parentElement.parentElement;
+    outerContainer.style.display = "none";
+    outerContainer.offsetHeight;
+    outerContainer.style.display = "block";
   }
 
   _init() {
