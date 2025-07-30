@@ -45,7 +45,7 @@ const le = (n) => new oe(typeof n == "string" ? n : n + "", void 0, G), he = (n,
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const { is: de, defineProperty: me, getOwnPropertyDescriptor: Ne, getOwnPropertyNames: ue, getOwnPropertySymbols: pe, getPrototypeOf: ge } = Object, g = globalThis, V = g.trustedTypes, ze = V ? V.emptyScript : "", L = g.reactiveElementPolyfillSupport, b = (n, e) => n, H = { toAttribute(n, e) {
+const { is: de, defineProperty: me, getOwnPropertyDescriptor: Ne, getOwnPropertyNames: ue, getOwnPropertySymbols: pe, getPrototypeOf: ge } = Object, g = globalThis, V = g.trustedTypes, ze = V ? V.emptyScript : "", L = g.reactiveElementPolyfillSupport, b = (n, e) => n, O = { toAttribute(n, e) {
   switch (e) {
     case Boolean:
       n = n ? ze : null;
@@ -73,7 +73,7 @@ const { is: de, defineProperty: me, getOwnPropertyDescriptor: Ne, getOwnProperty
       }
   }
   return t;
-} }, ae = (n, e) => !de(n, e), J = { attribute: !0, type: String, converter: H, reflect: !1, useDefault: !1, hasChanged: ae };
+} }, ae = (n, e) => !de(n, e), J = { attribute: !0, type: String, converter: O, reflect: !1, useDefault: !1, hasChanged: ae };
 Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), g.litPropertyMetadata ?? (g.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
 let C = class extends HTMLElement {
   static addInitializer(e) {
@@ -184,7 +184,7 @@ let C = class extends HTMLElement {
     var i;
     const o = this.constructor.elementProperties.get(e), a = this.constructor._$Eu(e, o);
     if (a !== void 0 && o.reflect === !0) {
-      const r = (((i = o.converter) == null ? void 0 : i.toAttribute) !== void 0 ? o.converter : H).toAttribute(t, o.type);
+      const r = (((i = o.converter) == null ? void 0 : i.toAttribute) !== void 0 ? o.converter : O).toAttribute(t, o.type);
       this._$Em = e, r == null ? this.removeAttribute(a) : this.setAttribute(a, r), this._$Em = null;
     }
   }
@@ -192,7 +192,7 @@ let C = class extends HTMLElement {
     var i, r;
     const o = this.constructor, a = o._$Eh.get(e);
     if (a !== void 0 && this._$Em !== a) {
-      const l = o.getPropertyOptions(a), s = typeof l.converter == "function" ? { fromAttribute: l.converter } : ((i = l.converter) == null ? void 0 : i.fromAttribute) !== void 0 ? l.converter : H;
+      const l = o.getPropertyOptions(a), s = typeof l.converter == "function" ? { fromAttribute: l.converter } : ((i = l.converter) == null ? void 0 : i.fromAttribute) !== void 0 ? l.converter : O;
       this._$Em = a, this[a] = s.fromAttribute(t, l.type) ?? ((r = this._$Ej) == null ? void 0 : r.get(a)) ?? null, this._$Em = null;
     }
   }
@@ -546,8 +546,8 @@ class E extends C {
 }
 var te;
 E._$litElement$ = !0, E.finalized = !0, (te = A.litElementHydrateSupport) == null || te.call(A, { LitElement: E });
-const O = A.litElementPolyfillSupport;
-O == null || O({ LitElement: E });
+const H = A.litElementPolyfillSupport;
+H == null || H({ LitElement: E });
 (A.litElementVersions ?? (A.litElementVersions = [])).push("4.2.0");
 const Ue = {
   AD: {
@@ -1971,6 +1971,8 @@ class _e extends E {
   _toggleExpandClick(e) {
     const t = e.currentTarget;
     t.hasAttribute("data-expand") ? t.removeAttribute("data-expand") : t.setAttribute("data-expand", "");
+    const o = t.parentElement.parentElement.parentElement;
+    o.style.display = "none", o.offsetHeight, o.style.display = "block";
   }
   _init() {
     var t;
