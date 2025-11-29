@@ -19,14 +19,17 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "echo \"No tests specified\" && exit 0",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "lit": "^3.3.0"
   },
   "devDependencies": {
-    "vite": "^6.3.5"
+    "@vitest/ui": "^4.0.14",
+    "vite": "^6.3.5",
+    "vitest": "^4.0.14"
   },
   "keywords": [
     "web-components",
