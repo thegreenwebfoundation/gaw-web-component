@@ -1,6 +1,3 @@
-> [!WARNING]
-> This web component is still being actively developed. It is currently not suitable for production use.
-
 # Grid-aware Websites Info Bar
 
 This web component is designed to work with the [Grid-aware Websites library](https://github.com/thegreenwebfoundation/grid-aware-websites). It aims to provide website users with contextual information about their local energy grid and enables customization options for grid-aware website designs.
