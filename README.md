@@ -162,6 +162,18 @@ This component is built using standard web components and supports all modern br
 
    This will allow you to preview changes made to the web component.
 
+### Unit tests
+
+You can execute unit tests with:
+
+```bash
+npm run test
+
+# or
+
+npm run test:ui
+```
+
 ## License
 
 [MIT License](LICENSE)
